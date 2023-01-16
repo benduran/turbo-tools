@@ -10,7 +10,8 @@
     "lint": "eslint './src/**/*.{ts,tsx}'",
     "lint:fix": "eslint './src/**/*.{ts,tsx}' --fix",
     "start": "TS_NODE_FILES=true ts-node ./src/cli.ts",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "postinstall": "husky install"
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.1",
@@ -27,6 +28,7 @@
     "detect-package-manager": "^2.0.1",
     "fast-glob": "^3.2.12",
     "fs-extra": "^11.1.0",
+    "husky": "^8.0.3",
     "lerna": "latest",
     "turbo": "latest",
     "typescript": "^4.9.4",
