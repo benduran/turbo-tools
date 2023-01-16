@@ -10,7 +10,6 @@
     "lint": "eslint './src/**/*.{ts,tsx}'",
     "lint:fix": "eslint './src/**/*.{ts,tsx}' --fix",
     "start": "TS_NODE_FILES=true ts-node ./src/cli.ts",
-    "prepublishOnly": "npm run build",
     "postinstall": "husky install"
   },
   "devDependencies": {
