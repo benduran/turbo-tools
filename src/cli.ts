@@ -6,7 +6,7 @@ import { init, list, publish, run, version } from './commands';
 
 export async function monorepoToolsCLI() {
   const argv = await yargs
-    .scriptName('monorepo-tools')
+    .scriptName('turbo-tools')
     .command('version', 'Skips publishing and just version bumps packages in your monorepo', version)
     .command(
       'publish',

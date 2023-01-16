@@ -9,8 +9,7 @@
     "build": "rm -rf ./dist && tsc && cp -r ./src/templates ./dist && cp ./package.json ./dist",
     "lint": "eslint './src/**/*.{ts,tsx}'",
     "lint:fix": "eslint './src/**/*.{ts,tsx}' --fix",
-    "start": "TS_NODE_FILES=true ts-node ./src/cli.ts",
-    "postinstall": "husky install"
+    "start": "TS_NODE_FILES=true ts-node ./src/cli.ts"
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.1",
