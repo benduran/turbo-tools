@@ -106,6 +106,7 @@ export async function publish(yargs: yargs.Argv) {
       const canPublish = await (turboToolsCustomConfig?.publish?.checkCanPublish?.({
         all,
         dryRun,
+        packagePath: packageInfo.packagePath,
         publishTag,
         releaseAs,
         yes,

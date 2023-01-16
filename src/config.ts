@@ -13,6 +13,10 @@ export interface CustomFncOpts {
   yes: boolean;
 }
 
+export interface CheckCanPublishOpts extends CustomFncOpts {
+  packagePath: string;
+}
+
 export interface AddToPackageJsonOpts {
   noDeps: boolean;
   noPublish: boolean;
@@ -39,7 +43,7 @@ export type TurboToolsConfig = Partial<{
      *
      * If this function doesn't exist, `true` will be used by default
      */
-    checkCanPublish: (opts: CustomFncOpts) => Promise<boolean>;
+    checkCanPublish: (opts: CheckCanPublishOpts) => Promise<boolean>;
 
     /**
      * Given a series of arguments provided to the Turbo Tools,
