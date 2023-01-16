@@ -1,0 +1,36 @@
+{
+  "description": "A collection of TurboRepo CLI tools to test, lint, build, version and publish packages in your Turborepo monorepo",
+  "name": "@better-builds/turbo-tools",
+  "version": "1.0.0",
+  "main": "./index.js",
+  "bin": "./cli.js",
+  "scripts": {
+    "clean": "rm -rf ./dist",
+    "build": "rm -rf ./dist && tsc && cp -r ./src/templates ./dist && cp ./package.json ./dist",
+    "lint": "eslint './src/**/*.{ts,tsx}'",
+    "lint:fix": "eslint './src/**/*.{ts,tsx}' --fix",
+    "start": "TS_NODE_FILES=true ts-node ./src/cli.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.1",
+    "@types/yargs": "^17.0.19",
+    "eslint-config-react-yas": "^3.0.2",
+    "type-fest": "^3.5.2"
+  },
+  "dependencies": {
+    "@commitlint/cli": "^17.4.2",
+    "@commitlint/config-conventional": "^17.4.2",
+    "@npmcli/map-workspaces": "^3.0.1",
+    "app-root-path": "^3.1.0",
+    "deepmerge": "^4.2.2",
+    "detect-package-manager": "^2.0.1",
+    "fast-glob": "^3.2.12",
+    "fs-extra": "^11.1.0",
+    "lerna": "latest",
+    "turbo": "latest",
+    "typescript": "^4.9.4",
+    "yargs": "^17.6.2"
+  },
+  "versionedAt": "2022-12-12T17:00:27.634Z"
+}

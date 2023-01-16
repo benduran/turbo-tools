@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
+    "jsx": "react",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "declaration": true,
+    "importsNotUsedAsValues": "error",
+    "newLine": "lf",
+    "isolatedModules": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitAny": false,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "module": "CommonJS",
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noImplicitReturns": false,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "outDir": "dist/",
+    "rootDir": "src/",
+    "skipLibCheck": true,
+    "sourceMap": false,
+    "target": "ES2020",
+    "useUnknownInCatchVariables": true
+  },
+  "include": ["src/"]
+}
