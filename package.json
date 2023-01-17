@@ -6,7 +6,7 @@
   "bin": "./cli.js",
   "scripts": {
     "clean": "rm -rf ./dist",
-    "build": "rm -rf ./dist && tsc && cp -r ./src/templates ./dist && cp ./package.json ./dist",
+    "build": "rm -rf ./dist && tsc && cp -r ./src/templates ./dist && cp ./package.json ./dist && cp ./README.md ./dist",
     "lint": "eslint './src/**/*.{ts,tsx}'",
     "lint:fix": "eslint './src/**/*.{ts,tsx}' --fix",
     "start": "TS_NODE_FILES=true ts-node ./src/cli.ts"
