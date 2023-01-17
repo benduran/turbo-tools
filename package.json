@@ -4,6 +4,20 @@
   "version": "1.0.3",
   "main": "./index.js",
   "bin": "./cli.js",
+  "license": "MPL-2.0",
+  "keywords": [
+    "turbo",
+    "tools",
+    "monorepo",
+    "publishing",
+    "versioning",
+    "easy-to-use",
+    "magic"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benduran/turbo-tools.git"
+  },
   "scripts": {
     "clean": "rm -rf ./dist",
     "build": "./scripts/prepDist.js",
