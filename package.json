@@ -1,7 +1,7 @@
 {
   "description": "A collection of TurboRepo CLI tools to test, lint, build, version and publish packages in your Turborepo monorepo",
   "name": "@better-builds/turbo-tools",
-  "version": "0.9.1-alpha.2",
+  "version": "1.0.0",
   "main": "./index.js",
   "bin": "./cli.js",
   "scripts": {
