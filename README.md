@@ -174,4 +174,4 @@ module.exports = defineTurboConfig({
 
 ## contributing
 
-This repository was built using Node `18.13.0` and `npm 9.3.0`. Please be sure you have those installed before contributing and issuing a PR. To get started, run `./repo-setup.sh` to bootstrap the repository. All contributions are welcome, thanks!
+This repository was built using Node `18.13.0` and `npm 9.3.0`. Please be sure you have those installed before contributing and issuing a PR. To get started, simply run `npm install`!

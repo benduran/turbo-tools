@@ -6,9 +6,10 @@
   "bin": "./cli.js",
   "scripts": {
     "clean": "rm -rf ./dist",
-    "build": "rm -rf ./dist && tsc && cp -r ./src/templates ./dist && cp ./package.json ./dist && cp ./README.md ./dist && cp -r ./docs ./dist",
+    "build": "./scripts/prepDist.js",
     "lint": "eslint './src/**/*.{ts,tsx}'",
     "lint:fix": "eslint './src/**/*.{ts,tsx}' --fix",
+    "postinstall": "husky install",
     "start": "TS_NODE_FILES=true ts-node ./src/cli.ts"
   },
   "devDependencies": {
