@@ -1,0 +1,25 @@
+{
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build", "graphql:generate"],
+      "outputs": ["dist/**"]
+    },
+    "graphql:generate": {
+      "dependsOn": ["^graphql:generate"]
+    },
+    "lint": {
+      "outputs": []
+    },
+    "lint:fix": {
+      "outputs": []
+    },
+    "start": {
+      "dependsOn": ["graphql:generate"]
+    },
+    "test": {
+      "dependsOn": ["graphql:generate"],
+      "inputs": ["src/**/*.tsx", "src/**/*.ts"],
+      "outputs": []
+    }
+  }
+}
