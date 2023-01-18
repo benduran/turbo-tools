@@ -42,7 +42,7 @@ Commands:
                        need (if overwritten in turboTools.config.js)
   turbo-tools run      Pass-through to Turborepo's run command
   turbo-tools init     Initializes a sane default configuration of config files
-                       to work with the monorepo-tools
+                       to work with the turbo-tools
   turbo-tools ls       Lists all the packages in the monorepo, as detected
                        officially by NPM
 

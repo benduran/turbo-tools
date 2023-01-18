@@ -83,7 +83,7 @@ export async function guardTurboExists() {
     execSyncFromRoot({ cmd: 'npx', args: ['turbo', '--help'], stdio: 'pipe' });
   } catch (error) {
     /* if we get here, turbo does NOT exist */
-    console.error('turbo has not been installed. unable to use the monorepo-tools');
+    console.error('turbo has not been installed. unable to use the turbo-tools');
     return false;
   }
   const turboJsonPath = path.join(appRootPath.toString(), 'turbo.json');
@@ -92,20 +92,20 @@ export async function guardTurboExists() {
     if (!turboJsonStat.isFile()) throw new Error('turbo.json is missing');
   } catch (error) {
     /* turbo.json is missing */
-    console.error('turbo.json is missing. unable to use the monorepo-tools');
+    console.error('turbo.json is missing. unable to use the turbo-tools');
     return false;
   }
   const turboJsonContents = JSON.parse(await fs.readFile(turboJsonPath, 'utf8')) as TurboJson;
   if (!turboJsonContents.pipeline?.build) {
-    console.error('turbo.json is missing a "build" pipeline. unable to use the monorepo-tools');
+    console.error('turbo.json is missing a "build" pipeline. unable to use the turbo-tools');
     return false;
   }
   if (!turboJsonContents.pipeline?.lint) {
-    console.error('turbo.json is missing a "lint" pipeline. unable to use the monorepo-tools');
+    console.error('turbo.json is missing a "lint" pipeline. unable to use the turbo-tools');
     return false;
   }
   if (!turboJsonContents.pipeline?.test) {
-    console.error('turbo.json is missing a "test" pipeline. unable to use the monorepo-tools');
+    console.error('turbo.json is missing a "test" pipeline. unable to use the turbo-tools');
     return false;
   }
   return true;
@@ -241,7 +241,7 @@ export async function versionWithLerna({
 
 /**
  * Detects the default branch where all PRs and branches are merged.
- * Useful when initializing a repo with the monorepo-tools
+ * Useful when initializing a repo with the turbo-tools
  */
 export function getDefaultGitBranch(cwd: string) {
   try {
