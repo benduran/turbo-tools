@@ -1,7 +1,7 @@
 {
   "devDependencies": {
     "eslint-config-react-yas": "^3.0.2",
-    "lerna": "^6.1.0",
+    "lerna": "^6.4.1",
     "turbo": "latest"
   }
 }

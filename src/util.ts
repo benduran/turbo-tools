@@ -1,6 +1,7 @@
 import mapWorkspaces from '@npmcli/map-workspaces';
 import appRootPath from 'app-root-path';
 import { execSync } from 'child_process';
+import { detect as detectPackageManager } from 'detect-package-manager';
 import fs from 'fs-extra';
 import path from 'path';
 import type { PackageJson } from 'type-fest';
@@ -32,12 +33,30 @@ export function execSyncFromRoot(args: Omit<ExecFromRootOptions, 'cwd'>) {
  * Grabs all the workspaces from the monorepo root
  */
 export async function findPackages(monorepoRoot = appRootPath.toString()) {
+  const whichPM = await getPackageManager(monorepoRoot);
   const rootPJSON = JSON.parse(await fs.readFile(path.join(monorepoRoot, 'package.json'), 'utf8'));
 
-  const workspaces = await mapWorkspaces({
-    cwd: monorepoRoot,
-    pkg: rootPJSON,
-  });
+  let workspaces: Map<string, string>;
+
+  if (whichPM === 'pnpm') {
+    // this will also include the ROOT workspace, which we need to manually exclude
+    const foundPnpmWorkspaces = JSON.parse(
+      execSyncFromDir({
+        args: ['list', '-r', '--depth', '-1', '--json'],
+        cmd: 'pnpm',
+        cwd: monorepoRoot,
+        stdio: 'pipe',
+      }).toString('utf-8'),
+    ) as Array<{ name: string; path: string; private: boolean; version: string }>;
+    workspaces = new Map(foundPnpmWorkspaces.filter(w => w.name !== rootPJSON.name).map(w => [w.name, w.path]));
+  } else {
+    // yarn and npm use the same "workspaces" field in the package.json,
+    // so we can rely on the npmcli detection algo
+    workspaces = await mapWorkspaces({
+      cwd: monorepoRoot,
+      pkg: rootPJSON,
+    });
+  }
 
   const packages = await Promise.all(
     Array.from(workspaces.entries()).map(async ([name, packagePath]) => {
@@ -260,4 +279,13 @@ export function getDefaultGitBranch(cwd: string) {
     console.error(error);
     return 'master';
   }
+}
+
+/**
+ * Detects the active package manager for the momorepo where this command is run.
+ * Defaults to 'npm' if detection fails.
+ */
+export async function getPackageManager(monorepoRoot = appRootPath.toString()) {
+  const which = (await detectPackageManager({ cwd: monorepoRoot })) ?? 'npm';
+  return which;
 }

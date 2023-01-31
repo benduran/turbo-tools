@@ -6,6 +6,7 @@ import {
   execSyncFromDir,
   execSyncFromRoot,
   findPackages,
+  getPackageManager,
   getVersionAndPublishBaseYargs,
   guardTurboExists,
   versionWithLerna,
@@ -77,7 +78,8 @@ export async function publish(yargs: yargs.Argv) {
     yes,
   });
 
-  const publishCmd = customPublishCmd?.cmd ?? 'npm';
+  const whichPackageManager = await getPackageManager();
+  const publishCmd = customPublishCmd?.cmd ?? whichPackageManager;
   const publishArgs = customPublishCmd?.args ?? ['publish'];
 
   await versionWithLerna({
