@@ -53,7 +53,11 @@ export async function init(yargs: yargs.Argv) {
       publishingTemplates.map(async tpath => {
         const filename = path.basename(tpath);
         const dest = path.join(monorepoRoot, filename);
-        const content = await fs.readFile(tpath);
+        let content: Buffer | string = await fs.readFile(tpath);
+        if (filename.includes('publish-changed-packages.sh')) {
+          const strContents = content.toString('utf-8');
+          content = strContents.replace(/{{whichPackageManager}}/gm, which === 'npm' ? 'npx' : which);
+        }
         console.info(`  Writing ${dest}`);
         await fs.writeFile(dest, content);
       }),

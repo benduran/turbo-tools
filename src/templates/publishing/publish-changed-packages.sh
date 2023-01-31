@@ -2,7 +2,7 @@
 
 set -ex
 
-CMD_TO_RUN="npx turbo-tools publish --yes"
+CMD_TO_RUN="{{whichPackageManager}} turbo-tools publish --yes"
 
 if [ $PUBLISH_DRY_RUN == true ]; then
   CMD_TO_RUN="$CMD_TO_RUN --dryRun"
