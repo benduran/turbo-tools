@@ -1,13 +1,12 @@
 import appRootPath from 'app-root-path';
 import deepMerge from 'deepmerge';
-import { detect as getPackageManager } from 'detect-package-manager';
 import glob from 'fast-glob';
 import fs from 'fs-extra';
 import path from 'path';
 import type yargs from 'yargs';
 
 import { readTurboToolsConfig } from '../config';
-import { execSyncFromDir, findPackages } from '../util';
+import { execSyncFromDir, findPackages, getPackageManager } from '../util';
 
 /**
  * Bootstraps sane / sensible set of default config files
@@ -32,7 +31,7 @@ export async function init(yargs: yargs.Argv) {
 
   const monorepoRoot = appRootPath.toString();
 
-  const which = (await getPackageManager({ cwd: monorepoRoot })) ?? 'npm';
+  const which = await getPackageManager(monorepoRoot);
 
   const allTemplatesGlob = path.join(__dirname, '../templates', '**', '*');
 
