@@ -118,4 +118,14 @@ export async function init(yargs: yargs.Argv) {
       await fs.writeFile(dest, contents);
     }),
   );
+
+  console.info('\n********************\n');
+  console.info(
+    'Your repository has been turbo turbo-tools enabled! The last thing for you to do is to add or update your git commig-msg hook to run the following:',
+  );
+  console.info(`    ${which === 'npm' ? 'npx' : which} commitlint -e\n`);
+  console.info(
+    '  This will allow you to take advantages of the conventional commits standard and leverage Turbo Tools to manage your pacakge version numbers 👍',
+  );
+  console.info('\n********************\n');
 }
