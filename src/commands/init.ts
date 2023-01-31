@@ -121,7 +121,7 @@ export async function init(yargs: yargs.Argv) {
 
   console.info('\n********************\n');
   console.info(
-    'Your repository has been turbo turbo-tools enabled! The last thing for you to do is to add or update your git commig-msg hook to run the following:',
+    'Your repository has been turbo and turbo-tools enabled! The last thing for you to do is to add or update your git commit-msg hook to run the following:',
   );
   console.info(`    ${which === 'npm' ? 'npx' : which} commitlint -e\n`);
   console.info(

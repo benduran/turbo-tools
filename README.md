@@ -11,7 +11,7 @@ Turbo Tools add the ability for you to perform version bumps of all your package
 
 ## dependencies
 
-**Turbo Tools currently only supports `npm >=8`. Support for `pnpm` and `yarn` is coming soon ⏲️**
+**Turbo Tools supports `npm`, `yarn` and `pnpm`.**
 
 ---
 
