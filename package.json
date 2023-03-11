@@ -28,24 +28,24 @@
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.1",
-    "@types/yargs": "^17.0.19",
-    "eslint-config-react-yas": "^3.0.2",
-    "type-fest": "^3.5.2"
+    "@types/yargs": "^17.0.22",
+    "eslint-config-react-yas": "^4.0.0",
+    "type-fest": "^3.6.1"
   },
   "dependencies": {
-    "@commitlint/cli": "^17.4.2",
-    "@commitlint/config-conventional": "^17.4.2",
-    "@npmcli/map-workspaces": "^3.0.1",
+    "@commitlint/cli": "^17.4.4",
+    "@commitlint/config-conventional": "^17.4.4",
+    "@npmcli/map-workspaces": "^3.0.2",
     "app-root-path": "^3.1.0",
-    "deepmerge": "^4.2.2",
+    "deepmerge": "^4.3.0",
     "detect-package-manager": "^2.0.1",
     "fast-glob": "^3.2.12",
     "fs-extra": "^11.1.0",
     "husky": "^8.0.3",
     "lerna": "latest",
     "turbo": "latest",
-    "typescript": "^4.9.4",
-    "yargs": "^17.6.2"
+    "typescript": "^4.9.5",
+    "yargs": "^17.7.1"
   },
   "versionedAt": "2022-12-12T17:00:27.634Z"
 }
