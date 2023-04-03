@@ -19,15 +19,15 @@ Turbo Tools add the ability for you to perform version bumps of all your package
 
 **npm**
 
-`npm install @better-builds/package-bundler -D`
+`npm install @better-builds/turbo-tools -D`
 
 **yarn**
 
-`yarn add @better-builds/package-bundler -D`
+`yarn add @better-builds/turbo-tools -D`
 
 **pnpm**
 
-`pnpm add @better-builds/package-bundler -D`
+`pnpm add @better-builds/turbo-tools -D`
 
 ## usage
 
