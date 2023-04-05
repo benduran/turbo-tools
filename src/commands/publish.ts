@@ -13,7 +13,7 @@ import {
 } from '../util';
 
 export async function publish(yargs: yargs.Argv) {
-  const { all, dryRun, releaseAs, skipLint, skipTest, yes } = await getVersionAndPublishBaseYargs(yargs)
+  const { all, dryRun, releaseAs, skipLint, skipTest, yes, versionPrivate } = await getVersionAndPublishBaseYargs(yargs)
     .option('skipLint', {
       default: false,
       description: 'If true, skips running the lint command across all changed repositories before publishing',
@@ -24,22 +24,34 @@ export async function publish(yargs: yargs.Argv) {
       description: 'If true, skips running the test command across all changed repositories before publishing',
       type: 'boolean',
     })
+    .option('versionPrivate', {
+      default: false,
+      description: 'If true, versions the private packages that have changes',
+      type: 'boolean',
+    })
     .help().argv;
 
   const publishTag = determinePublishTag(releaseAs);
 
   let lernaDetectedChanges = '';
-  try {
-    lernaDetectedChanges = execSyncFromRoot({
-      args: ['lerna', 'changed'],
-      cmd: 'npx',
-      stdio: 'pipe',
-    }).toString('utf8');
-  } catch (error) {
-    const err = error as Error;
-    console.error(err.message);
-    process.exit(err.message.includes('No changed packages found') ? 0 : 1);
+  if (!all) {
+    try {
+      let args = ['lerna', 'changed'];
+      if (versionPrivate) {
+        args.push('--all');
+      }
+      lernaDetectedChanges = execSyncFromRoot({
+        args: args,
+        cmd: 'npx',
+        stdio: 'pipe',
+      }).toString('utf8');
+    } catch (error) {
+      const err = error as Error;
+      console.error(err.message);
+      process.exit(err.message.includes('No changed packages found') ? 0 : 1);
+    }
   }
+
   const changedPreBumpPackages = (await findPackages()).filter(p => all || lernaDetectedChanges.includes(p.name));
   console.info('\n', changedPreBumpPackages.length, 'changed packages found to publish\n');
 
