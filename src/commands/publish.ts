@@ -38,7 +38,7 @@ export async function publish(yargs: yargs.Argv) {
     try {
       let args = ['lerna', 'changed'];
       if (versionPrivate) {
-        args.push('-all');
+        args.push('--all');
       }
       lernaDetectedChanges = execSyncFromRoot({
         args: args,
