@@ -189,7 +189,14 @@ export async function versionWithLerna({
   yes: boolean;
 }) {
   const versionCmd = 'npx';
-  const versionArgs = ['lerna', 'version', '--conventional-commits', '--force-git-tag', '--no-commit-hooks'];
+  const versionArgs = [
+    'lerna',
+    'version',
+    '--conventional-commits',
+    '--force-git-tag',
+    '--no-commit-hooks',
+    '--no-push',
+  ];
   const isPrerelease = releaseAs === 'alpha' || releaseAs === 'beta';
   if (publishTag) {
     const currentCommitHash = execSyncFromRoot({
@@ -244,6 +251,44 @@ export async function versionWithLerna({
 
   // lerna was GREAT at version bumping, so we'll just let it continue to do that
   execSyncFromRoot({ args: versionArgs, cmd: versionCmd, stdio: 'inherit' });
+
+  // lerna didn't push, so we'll now amend the previous commit with the results
+  // from running npm install, pnpm install or yarn install
+  const lastCommitMessage = execSyncFromRoot({
+    args: ['--no-pager', 'log', '--format=%B', '-n', '1'],
+    cmd: 'git',
+    stdio: 'pipe',
+  }).toString('utf-8');
+
+  const pm = await getPackageManager();
+
+  execSyncFromRoot({
+    args: ['install'],
+    cmd: pm,
+    stdio: 'inherit',
+  });
+
+  execSyncFromRoot({
+    args: ['add', '.'],
+    cmd: 'git',
+    stdio: 'inherit',
+  });
+  execSyncFromRoot({
+    args: ['--amend', '-m', lastCommitMessage],
+    cmd: 'git',
+    stdio: 'inherit',
+  });
+
+  execSyncFromRoot({
+    args: ['push'],
+    cmd: 'git',
+    stdio: 'inherit',
+  });
+  execSyncFromRoot({
+    args: ['push', '--tags'],
+    cmd: 'git',
+    stdio: 'inherit',
+  });
 
   // reset any non-committed changes for a clean working directory
   if (!willPublish) execSyncFromRoot({ args: ['checkout', '.'], cmd: 'git', stdio: 'inherit' });
