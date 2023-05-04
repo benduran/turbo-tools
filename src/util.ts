@@ -274,7 +274,7 @@ export async function versionWithLerna({
     stdio: 'inherit',
   });
   execSyncFromRoot({
-    args: ['--amend', '-m', lastCommitMessage],
+    args: ['--amend', '-m', `"${lastCommitMessage}"`],
     cmd: 'git',
     stdio: 'inherit',
   });
