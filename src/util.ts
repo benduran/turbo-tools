@@ -271,15 +271,15 @@ export async function versionWithLerna({
     stdio: 'inherit',
   });
 
-  execSyncFromRoot({
-    args: ['add', '.'],
-    cmd: 'git',
-    stdio: 'inherit',
-  });
-
   // If lerna isn't committing, neither are we.
   // this likely means a user triggered only a prerelease version operation
   if (lernaWillCommit) {
+    execSyncFromRoot({
+      args: ['add', '.'],
+      cmd: 'git',
+      stdio: 'inherit',
+    });
+
     execSyncFromRoot({
       args: ['commit', '--amend', '-m', `"${lastCommitMessage}"`, '--no-verify'],
       cmd: 'git',
