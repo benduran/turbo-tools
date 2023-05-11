@@ -211,11 +211,14 @@ export async function versionWithLerna({
   }
   if (yes) versionArgs.push('--yes');
   if (dryRun) versionArgs.push('--no-push');
+
+  let lernaWillCommit = true;
   if (releaseAs) {
     versionArgs.push(isPrerelease ? 'prerelease' : releaseAs);
     if (isPrerelease) {
       versionArgs.push('--no-changelog');
       versionArgs.push('--no-git-tag-version');
+      lernaWillCommit = false;
     }
   }
 
@@ -273,22 +276,29 @@ export async function versionWithLerna({
     cmd: 'git',
     stdio: 'inherit',
   });
-  execSyncFromRoot({
-    args: ['commit', '--amend', '-m', `"${lastCommitMessage}"`, '--no-verify'],
-    cmd: 'git',
-    stdio: 'inherit',
-  });
 
-  execSyncFromRoot({
-    args: ['push'],
-    cmd: 'git',
-    stdio: 'inherit',
-  });
-  execSyncFromRoot({
-    args: ['push', '--tags'],
-    cmd: 'git',
-    stdio: 'inherit',
-  });
+  // If lerna isn't committing, neither are we.
+  // this likely means a user triggered only a prerelease version operation
+  if (lernaWillCommit) {
+    execSyncFromRoot({
+      args: ['commit', '--amend', '-m', `"${lastCommitMessage}"`, '--no-verify'],
+      cmd: 'git',
+      stdio: 'inherit',
+    });
+
+    if (!dryRun) {
+      execSyncFromRoot({
+        args: ['push'],
+        cmd: 'git',
+        stdio: 'inherit',
+      });
+      execSyncFromRoot({
+        args: ['push', '--tags'],
+        cmd: 'git',
+        stdio: 'inherit',
+      });
+    }
+  }
 
   // reset any non-committed changes for a clean working directory
   if (!willPublish) execSyncFromRoot({ args: ['checkout', '.'], cmd: 'git', stdio: 'inherit' });
