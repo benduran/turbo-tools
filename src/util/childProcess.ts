@@ -18,7 +18,7 @@ export function execFromDir({ args, cmd, cwd, stdio }: ExecFromDirOptions) {
   const toExec = `${cmd} ${args.join(' ')}`;
   console.info(`Executing ${toExec} in ${cwd}`);
 
-  return execSync(toExec, { cwd, maxBuffer: MAX_BUFFER_SIZE, stdio }).toString('utf-8').trim();
+  return execSync(toExec, { cwd, maxBuffer: MAX_BUFFER_SIZE, stdio })?.toString('utf-8').trim() || '';
 }
 
 /**
