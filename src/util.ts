@@ -1,7 +1,7 @@
 import mapWorkspaces from '@npmcli/map-workspaces';
 import appRootPath from 'app-root-path';
-import { exec, execSync } from 'child_process';
 import { detect as detectPackageManager } from 'detect-package-manager';
+import { command, commandSync } from 'execa';
 import fs from 'fs-extra';
 import os from 'os';
 import path from 'path';
@@ -19,7 +19,7 @@ interface ExecFromDirOptions {
  * Executes a command synchronously from a specific dir
  */
 export function execSyncFromDir({ args, cmd, cwd, stdio }: ExecFromDirOptions) {
-  return execSync(`${cmd} ${args.join(' ')}`, { cwd, stdio });
+  return commandSync(`${cmd} ${args.join(' ')}`, { cwd, stdio }).stdout;
 }
 
 /**
@@ -30,12 +30,7 @@ export function execAsyncFromDir({
   cmd,
   cwd,
 }: Omit<ExecFromDirOptions, 'stdio'>): Promise<{ stderr: string; stdout: string }> {
-  return new Promise((resolve, reject) => {
-    exec(`${cmd} ${args.join(' ')}`, { cwd }, (err, stdout, stderr) => {
-      if (err) return reject(err);
-      return resolve({ stderr, stdout });
-    });
-  });
+  return command(`${cmd} ${args.join(' ')}`, { stdio: 'pipe' });
 }
 
 /**
@@ -69,7 +64,7 @@ export async function findPackages(monorepoRoot = appRootPath.toString()) {
         cmd: 'pnpm',
         cwd: monorepoRoot,
         stdio: 'pipe',
-      }).toString('utf-8'),
+      }),
     ) as Array<{ name: string; path: string; private: boolean; version: string }>;
     workspaces = new Map(foundPnpmWorkspaces.filter(w => w.name !== rootPJSON.name).map(w => [w.name, w.path]));
   } else {
@@ -223,7 +218,6 @@ export async function getLocalGitTags() {
     cmd: 'git',
     stdio: 'pipe',
   })
-    .toString('utf-8')
     .split(os.EOL)
     .filter(Boolean)
     .map(t => {
@@ -240,7 +234,6 @@ export async function getLocalGitTags() {
     cmd: 'git',
     stdio: 'pipe',
   })
-    .toString('utf-8')
     .split(os.EOL)
     .filter(Boolean)
     .map(t => path.basename(t));
@@ -283,9 +276,7 @@ export async function versionWithLerna({
       args: ['rev-parse', '--short', 'HEAD'],
       cmd: 'git',
       stdio: 'pipe',
-    })
-      .toString('utf8')
-      .trim();
+    }).trim();
     // add the current commit hash to ensure uniqueness when handling prerelease versions
     versionArgs.push('--preid', `"${publishTag}-${currentCommitHash}"`);
   }
@@ -329,7 +320,7 @@ export async function versionWithLerna({
       args: ['rev-parse', 'HEAD^1'],
       cmd: 'git',
       stdio: 'pipe',
-    }).toString('utf-8');
+    });
   }
 
   // lerna was GREAT at version bumping, so we'll just let it continue to do that
@@ -341,7 +332,7 @@ export async function versionWithLerna({
     args: ['--no-pager', 'log', '--format=%B', '-n', '1'],
     cmd: 'git',
     stdio: 'pipe',
-  }).toString('utf-8');
+  });
 
   const pm = await getPackageManager();
 
@@ -417,7 +408,7 @@ export function getDefaultGitBranch(cwd: string) {
       cmd: 'git',
       cwd,
       stdio: 'pipe',
-    }).toString('utf8');
+    });
 
     const splitOut = out.split('/');
 
