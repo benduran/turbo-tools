@@ -45,7 +45,7 @@ export async function publish(yargs: yargs.Argv) {
         args: args,
         cmd: 'npx',
         stdio: 'pipe',
-      }).toString('utf8');
+      });
     } catch (error) {
       const err = error as Error;
       console.error(err.message);
