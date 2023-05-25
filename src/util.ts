@@ -12,15 +12,13 @@ interface ExecFromDirOptions {
   args: string[];
   cmd: string;
   cwd: string;
-  quiet?: boolean;
   stdio: 'inherit' | 'pipe';
 }
 
 /**
  * Executes a command synchronously from a specific dir
  */
-export function execSyncFromDir({ args, cmd, cwd, quiet, stdio }: ExecFromDirOptions) {
-  if (!quiet) console.info(`\nExecuting ${cmd} ${args.join(' ')} in ${cwd}\n`);
+export function execSyncFromDir({ args, cmd, cwd, stdio }: ExecFromDirOptions) {
   return execSync(`${cmd} ${args.join(' ')}`, { cwd, stdio });
 }
 
@@ -31,10 +29,8 @@ export function execAsyncFromDir({
   args,
   cmd,
   cwd,
-  quiet,
 }: Omit<ExecFromDirOptions, 'stdio'>): Promise<{ stderr: string; stdout: string }> {
   return new Promise((resolve, reject) => {
-    if (!quiet) console.info(`\nExecuting ${cmd} ${args.join(' ')} in ${cwd}\n`);
     exec(`${cmd} ${args.join(' ')}`, { cwd }, (err, stdout, stderr) => {
       if (err) return reject(err);
       return resolve({ stderr, stdout });
@@ -245,7 +241,6 @@ export async function getLocalGitTags() {
         const { stdout } = await execAsyncFromRoot({
           args: ['ls-remote', '--tags', 'origin', `refs/tags/${tag}`],
           cmd: 'git',
-          quiet: true,
         });
 
         const refInfo = stdout.trim();
@@ -453,5 +448,3 @@ export async function getPackageManager(monorepoRoot = appRootPath.toString()) {
   const which = (await detectPackageManager({ cwd: monorepoRoot })) ?? 'npm';
   return which;
 }
-
-getLocalGitTags().then(console.info);
