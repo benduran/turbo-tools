@@ -218,45 +218,34 @@ export function chunkArray<T>(arr: T[], chunkSize = 5): T[][] {
  * that already exist
  */
 export async function getLocalGitTags() {
-  // Keep this here, but note: since this is primarily
-  // intended to be run in CI, CI should have the most up-to-date tags when the repo is cloned
-  // execSyncFromRoot({
-  //   args: ['fetch', '--tags'],
-  //   cmd: 'git',
-  //   stdio: 'inherit',
-  // });
-  const tagsStr = execSyncFromRoot({
-    args: ['--no-pager', 'tag', '--list'],
+  const allRemoteTags = execSyncFromRoot({
+    args: ['ls-remote', '--tags', 'origin'],
     cmd: 'git',
     stdio: 'pipe',
-  }).toString('utf-8');
-  const allTags = tagsStr.split(os.EOL).filter(Boolean);
+  })
+    .toString('utf-8')
+    .split(os.EOL)
+    .filter(Boolean)
+    .map(t => {
+      const [sha = '', ref = ''] = t.split(/\s+/);
 
-  const chunkedAllTags = chunkArray(allTags);
+      return { name: path.basename(ref), sha };
+    });
 
-  const allNewTags: Array<{ tag: string; remote?: { ref: string; sha: string } }> = [];
-  for (const chunk of chunkedAllTags) {
-    const chunkResult = await Promise.all(
-      chunk.map(async tag => {
-        const { stdout } = await execAsyncFromRoot({
-          args: ['ls-remote', '--tags', 'origin', `refs/tags/${tag}`],
-          cmd: 'git',
-        });
+  // this includes the possible refs/tags prefix (or whichever else custom prefix a user may have setup)
+  const allRemoteTagsSet = new Set(allRemoteTags.map(t => t.name));
 
-        const refInfo = stdout.trim();
+  const localTags = execSyncFromRoot({
+    args: ['--no-pager', 'tag'],
+    cmd: 'git',
+    stdio: 'pipe',
+  })
+    .toString('utf-8')
+    .split(os.EOL)
+    .filter(Boolean)
+    .map(t => path.basename(t));
 
-        if (!refInfo) return { tag };
-
-        const [sha = '', ref = ''] = refInfo.split(/\s+/);
-
-        return { tag, remote: { ref, sha } };
-      }),
-    );
-
-    allNewTags.push(...chunkResult);
-  }
-
-  return allNewTags.filter(t => Boolean(t.remote)).map(t => t.tag);
+  return localTags.filter(t => !allRemoteTagsSet.has(t));
 }
 
 /**
