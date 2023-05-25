@@ -9,7 +9,6 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "declaration": true,
-    "importsNotUsedAsValues": "error",
     "newLine": "lf",
     "isolatedModules": true,
     "allowSyntheticDefaultImports": true,
