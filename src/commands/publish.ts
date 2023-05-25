@@ -13,23 +13,24 @@ import {
 } from '../util';
 
 export async function publish(yargs: yargs.Argv) {
-  const { all, dryRun, releaseAs, skipLint, skipTest, yes, versionPrivate } = await getVersionAndPublishBaseYargs(yargs)
-    .option('skipLint', {
-      default: false,
-      description: 'If true, skips running the lint command across all changed repositories before publishing',
-      type: 'boolean',
-    })
-    .option('skipTest', {
-      default: false,
-      description: 'If true, skips running the test command across all changed repositories before publishing',
-      type: 'boolean',
-    })
-    .option('versionPrivate', {
-      default: false,
-      description: 'If true, versions the private packages that have changes',
-      type: 'boolean',
-    })
-    .help().argv;
+  const { all, dryRun, forceTags, releaseAs, skipLint, skipTest, yes, versionPrivate } =
+    await getVersionAndPublishBaseYargs(yargs)
+      .option('skipLint', {
+        default: false,
+        description: 'If true, skips running the lint command across all changed repositories before publishing',
+        type: 'boolean',
+      })
+      .option('skipTest', {
+        default: false,
+        description: 'If true, skips running the test command across all changed repositories before publishing',
+        type: 'boolean',
+      })
+      .option('versionPrivate', {
+        default: false,
+        description: 'If true, versions the private packages that have changes',
+        type: 'boolean',
+      })
+      .help().argv;
 
   const publishTag = determinePublishTag(releaseAs);
 
@@ -97,6 +98,7 @@ export async function publish(yargs: yargs.Argv) {
   await versionWithLerna({
     all,
     dryRun,
+    forceTags,
     publishTag,
     releaseAs,
     willPublish: true,
