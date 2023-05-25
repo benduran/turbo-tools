@@ -1,32 +1,59 @@
 import mapWorkspaces from '@npmcli/map-workspaces';
 import appRootPath from 'app-root-path';
-import { execSync } from 'child_process';
+import { exec, execSync } from 'child_process';
 import { detect as detectPackageManager } from 'detect-package-manager';
 import fs from 'fs-extra';
+import os from 'os';
 import path from 'path';
 import type { PackageJson } from 'type-fest';
 import type yargs from 'yargs';
 
-interface ExecFromRootOptions {
+interface ExecFromDirOptions {
   args: string[];
   cmd: string;
   cwd: string;
+  quiet?: boolean;
   stdio: 'inherit' | 'pipe';
+}
+
+/**
+ * Executes a command synchronously from a specific dir
+ */
+export function execSyncFromDir({ args, cmd, cwd, quiet, stdio }: ExecFromDirOptions) {
+  if (!quiet) console.info(`\nExecuting ${cmd} ${args.join(' ')} in ${cwd}\n`);
+  return execSync(`${cmd} ${args.join(' ')}`, { cwd, stdio });
 }
 
 /**
  * Executes a command asynchronously from a specific dir
  */
-export function execSyncFromDir({ args, cmd, cwd, stdio }: ExecFromRootOptions) {
-  console.info(`\nExecuting ${cmd} ${args.join(' ')} in ${cwd}\n`);
-  return execSync(`${cmd} ${args.join(' ')}`, { cwd, stdio });
+export function execAsyncFromDir({
+  args,
+  cmd,
+  cwd,
+  quiet,
+}: Omit<ExecFromDirOptions, 'stdio'>): Promise<{ stderr: string; stdout: string }> {
+  return new Promise((resolve, reject) => {
+    if (!quiet) console.info(`\nExecuting ${cmd} ${args.join(' ')} in ${cwd}\n`);
+    exec(`${cmd} ${args.join(' ')}`, { cwd }, (err, stdout, stderr) => {
+      if (err) return reject(err);
+      return resolve({ stderr, stdout });
+    });
+  });
 }
 
 /**
- * Executes a command asynchronously in the root of the project a.k.a. the monorepo root
+ * Executes a command synchronously in the root of the project a.k.a. the monorepo root
  */
-export function execSyncFromRoot(args: Omit<ExecFromRootOptions, 'cwd'>) {
+export function execSyncFromRoot(args: Omit<ExecFromDirOptions, 'cwd'>) {
   return execSyncFromDir({ ...args, cwd: appRootPath.toString() });
+}
+
+/**
+ * Executes a command synchronously in the root of the project a.k.a. the monorepo root
+ */
+export function execAsyncFromRoot(args: Omit<ExecFromDirOptions, 'cwd' | 'stdio'>) {
+  return execAsyncFromDir({ ...args, cwd: appRootPath.toString() });
 }
 
 /**
@@ -150,6 +177,11 @@ export function getVersionAndPublishBaseYargs(yargs: yargs.Argv) {
         'If true, will perform all steps right up until publish, and then output what would happen if publish were to continue',
       type: 'boolean',
     })
+    .option('forceTags', {
+      default: false,
+      description: 'If true, will force push all git tags, both new and existing, to upstream',
+      type: 'boolean',
+    })
     .option('releaseAs', {
       description:
         'Releases each changed package as this release type or as an exact version. "major" "minor" "patch" "alpha" "beta" or an exact semver version number are allowed.',
@@ -171,11 +203,74 @@ export function determinePublishTag(releaseAs?: string) {
 }
 
 /**
+ * Given an input array, chunks the array into segments
+ * so you can process things in smaller batches
+ */
+export function chunkArray<T>(arr: T[], chunkSize = 5): T[][] {
+  const out: T[][] = [];
+
+  for (let i = 0; i < arr.length; i += chunkSize) {
+    out.push(arr.slice(i, i + chunkSize));
+  }
+
+  return out;
+}
+
+/**
+ * Determines which git tags only exist locally.
+ * Useful for preventing errors pushing tags to upstream
+ * that already exist
+ */
+export async function getLocalGitTags() {
+  // Keep this here, but note: since this is primarily
+  // intended to be run in CI, CI should have the most up-to-date tags when the repo is cloned
+  // execSyncFromRoot({
+  //   args: ['fetch', '--tags'],
+  //   cmd: 'git',
+  //   stdio: 'inherit',
+  // });
+  const tagsStr = execSyncFromRoot({
+    args: ['--no-pager', 'tag', '--list'],
+    cmd: 'git',
+    stdio: 'pipe',
+  }).toString('utf-8');
+  const allTags = tagsStr.split(os.EOL).filter(Boolean);
+
+  const chunkedAllTags = chunkArray(allTags);
+
+  const allNewTags: Array<{ tag: string; remote?: { ref: string; sha: string } }> = [];
+  for (const chunk of chunkedAllTags) {
+    const chunkResult = await Promise.all(
+      chunk.map(async tag => {
+        const { stdout } = await execAsyncFromRoot({
+          args: ['ls-remote', '--tags', 'origin', `refs/tags/${tag}`],
+          cmd: 'git',
+          quiet: true,
+        });
+
+        const refInfo = stdout.trim();
+
+        if (!refInfo) return { tag };
+
+        const [sha = '', ref = ''] = refInfo.split(/\s+/);
+
+        return { tag, remote: { ref, sha } };
+      }),
+    );
+
+    allNewTags.push(...chunkResult);
+  }
+
+  return allNewTags.filter(t => Boolean(t.remote)).map(t => t.tag);
+}
+
+/**
  * Performs version bumps across all registered packages with Lerna's "version" command
  */
 export async function versionWithLerna({
   all,
   dryRun,
+  forceTags,
   releaseAs,
   publishTag,
   willPublish,
@@ -183,6 +278,7 @@ export async function versionWithLerna({
 }: {
   all: boolean;
   dryRun: boolean;
+  forceTags: boolean;
   releaseAs?: 'major' | 'minor' | 'patch' | 'alpha' | 'beta' | string;
   publishTag: 'alpha' | 'beta' | '';
   willPublish: boolean;
@@ -292,11 +388,24 @@ export async function versionWithLerna({
         cmd: 'git',
         stdio: 'inherit',
       });
-      execSyncFromRoot({
-        args: ['push', '--tags'],
-        cmd: 'git',
-        stdio: 'inherit',
-      });
+      if (forceTags) {
+        // force push all tags to upstream, regardless if they're new or not
+        execSyncFromRoot({
+          args: ['push', '--tags', '-f'],
+          cmd: 'git',
+          stdio: 'inherit',
+        });
+      } else {
+        // only push newly-created tags
+        const localTagsOnly = await getLocalGitTags();
+        for (const tag of localTagsOnly) {
+          execSyncFromRoot({
+            args: ['push', 'origin', `refs/tags/${tag}`],
+            cmd: 'git',
+            stdio: 'inherit',
+          });
+        }
+      }
     }
   }
 
@@ -344,3 +453,5 @@ export async function getPackageManager(monorepoRoot = appRootPath.toString()) {
   const which = (await detectPackageManager({ cwd: monorepoRoot })) ?? 'npm';
   return which;
 }
+
+getLocalGitTags().then(console.info);
