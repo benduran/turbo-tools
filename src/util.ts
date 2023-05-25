@@ -203,6 +203,20 @@ export function determinePublishTag(releaseAs?: string) {
 }
 
 /**
+ * Given an input array, chunks the array into segments
+ * so you can process things in smaller batches
+ */
+export function chunkArray<T>(arr: T[], chunkSize = 5): T[][] {
+  const out: T[][] = [];
+
+  for (let i = 0; i < arr.length; i += chunkSize) {
+    out.push(arr.slice(i, i + chunkSize));
+  }
+
+  return out;
+}
+
+/**
  * Determines which git tags only exist locally.
  * Useful for preventing errors pushing tags to upstream
  * that already exist
@@ -222,9 +236,12 @@ export async function getLocalGitTags() {
   }).toString('utf-8');
   const allTags = tagsStr.split(os.EOL).filter(Boolean);
 
-  const allNewTags = (
-    await Promise.all(
-      allTags.map(async tag => {
+  const chunkedAllTags = chunkArray(allTags);
+
+  const allNewTags: Array<{ tag: string; remote?: { ref: string; sha: string } }> = [];
+  for (const chunk of chunkedAllTags) {
+    const chunkResult = await Promise.all(
+      chunk.map(async tag => {
         const { stdout } = await execAsyncFromRoot({
           args: ['ls-remote', '--tags', 'origin', `refs/tags/${tag}`],
           cmd: 'git',
@@ -233,16 +250,18 @@ export async function getLocalGitTags() {
 
         const refInfo = stdout.trim();
 
-        if (!refInfo) return { tag, remote: null };
+        if (!refInfo) return { tag };
 
-        const [sha, ref] = refInfo.split(/\s+/);
+        const [sha = '', ref = ''] = refInfo.split(/\s+/);
 
         return { tag, remote: { ref, sha } };
       }),
-    )
-  ).filter(t => !Boolean(t.remote));
+    );
 
-  return allNewTags.map(t => t.tag);
+    allNewTags.push(...chunkResult);
+  }
+
+  return allNewTags.filter(t => Boolean(t.remote)).map(t => t.tag);
 }
 
 /**
@@ -434,3 +453,5 @@ export async function getPackageManager(monorepoRoot = appRootPath.toString()) {
   const which = (await detectPackageManager({ cwd: monorepoRoot })) ?? 'npm';
   return which;
 }
+
+getLocalGitTags().then(console.info);
