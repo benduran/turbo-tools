@@ -10,7 +10,7 @@ export async function run(yargs: yargs.Argv) {
   const argv = await yargs.parserConfiguration({ 'unknown-options-as-args': true }).argv;
 
   try {
-    await execFromRoot({
+    execFromRoot({
       cmd: 'npx',
       args: ['turbo', 'run', ...argv._.slice(1).map(String)],
       stdio: 'inherit',

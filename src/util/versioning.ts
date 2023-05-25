@@ -44,13 +44,11 @@ export async function versionWithLerna({
   ];
   const isPrerelease = releaseAs === 'alpha' || releaseAs === 'beta';
   if (publishTag) {
-    const currentCommitHash = (
-      await execFromRoot({
-        args: ['rev-parse', '--short', 'HEAD'],
-        cmd: 'git',
-        stdio: 'pipe',
-      })
-    ).stdout.trim();
+    const currentCommitHash = execFromRoot({
+      args: ['rev-parse', '--short', 'HEAD'],
+      cmd: 'git',
+      stdio: 'pipe',
+    });
     // add the current commit hash to ensure uniqueness when handling prerelease versions
     versionArgs.push('--preid', `"${publishTag}-${currentCommitHash}"`);
   }
@@ -79,24 +77,22 @@ export async function versionWithLerna({
         await fs.writeFile(pjsonPath, JSON.stringify({ ...pjson, versionedAt }, null, 2), 'utf8');
       }),
     );
-    await execFromRoot({
+    execFromRoot({
       args: ['add', '.'],
       cmd: 'git',
       stdio: 'inherit',
     });
-    await execFromRoot({
+    execFromRoot({
       args: ['commit', '-m', '"Force bump all"', '--no-verify'],
       cmd: 'git',
       stdio: 'inherit',
     });
 
-    gitResetDirtyToThisPoint = (
-      await execFromRoot({
-        args: ['rev-parse', 'HEAD^1'],
-        cmd: 'git',
-        stdio: 'pipe',
-      })
-    ).stdout;
+    gitResetDirtyToThisPoint = execFromRoot({
+      args: ['rev-parse', 'HEAD^1'],
+      cmd: 'git',
+      stdio: 'pipe',
+    });
   }
 
   // lerna was GREAT at version bumping, so we'll just let it continue to do that

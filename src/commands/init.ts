@@ -107,7 +107,7 @@ export async function init(yargs: yargs.Argv) {
       }),
     );
 
-    await execFromDir({ args: ['install'], cmd: which, cwd: monorepoRoot, stdio: 'inherit' });
+    execFromDir({ args: ['install'], cmd: which, cwd: monorepoRoot, stdio: 'inherit' });
   }
 
   await Promise.all(

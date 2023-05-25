@@ -28,7 +28,7 @@ type TurboJson = Partial<Record<'@schema', string>> &
  */
 export async function guardTurboExists() {
   try {
-    await execFromRoot({ cmd: 'npx', args: ['turbo', '--help'], stdio: 'pipe' });
+    execFromRoot({ cmd: 'npx', args: ['turbo', '--help'], stdio: 'pipe' });
   } catch (error) {
     /* if we get here, turbo does NOT exist */
     console.error('turbo has not been installed. unable to use the turbo-tools');

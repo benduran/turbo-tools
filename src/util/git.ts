@@ -9,13 +9,11 @@ import { execFromDir, execFromRoot } from './childProcess';
  * that already exist
  */
 export async function getLocalGitTags() {
-  const allRemoteTags = (
-    await execFromRoot({
-      args: ['ls-remote', '--tags', 'origin'],
-      cmd: 'git',
-      stdio: 'pipe',
-    })
-  ).stdout
+  const allRemoteTags = execFromRoot({
+    args: ['ls-remote', '--tags', 'origin'],
+    cmd: 'git',
+    stdio: 'pipe',
+  })
     .split(os.EOL)
     .filter(Boolean)
     .map(t => {
@@ -27,13 +25,11 @@ export async function getLocalGitTags() {
   // this includes the possible refs/tags prefix (or whichever else custom prefix a user may have setup)
   const allRemoteTagsSet = new Set(allRemoteTags.map(t => t.name));
 
-  const localTags = (
-    await execFromRoot({
-      args: ['--no-pager', 'tag'],
-      cmd: 'git',
-      stdio: 'pipe',
-    })
-  ).stdout
+  const localTags = execFromRoot({
+    args: ['--no-pager', 'tag'],
+    cmd: 'git',
+    stdio: 'pipe',
+  })
     .split(os.EOL)
     .filter(Boolean)
     .map(t => path.basename(t));
@@ -47,7 +43,7 @@ export async function getLocalGitTags() {
  */
 export async function getDefaultGitBranch(cwd: string) {
   try {
-    const { stdout } = await execFromDir({
+    const stdout = execFromDir({
       args: ['symbolic-ref', 'refs/remotes/origin/HEAD'],
       cmd: 'git',
       cwd,

@@ -19,14 +19,12 @@ export async function findPackages(monorepoRoot = appRootPath.toString()) {
   if (whichPM === 'pnpm') {
     // this will also include the ROOT workspace, which we need to manually exclude
     const foundPnpmWorkspaces = JSON.parse(
-      (
-        await execFromDir({
-          args: ['list', '-r', '--depth', '-1', '--json'],
-          cmd: 'pnpm',
-          cwd: monorepoRoot,
-          stdio: 'pipe',
-        })
-      ).stdout,
+      execFromDir({
+        args: ['list', '-r', '--depth', '-1', '--json'],
+        cmd: 'pnpm',
+        cwd: monorepoRoot,
+        stdio: 'pipe',
+      }),
     ) as Array<{ name: string; path: string; private: boolean; version: string }>;
     workspaces = new Map(foundPnpmWorkspaces.filter(w => w.name !== rootPJSON.name).map(w => [w.name, w.path]));
   } else {

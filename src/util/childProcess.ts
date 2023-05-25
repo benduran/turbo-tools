@@ -1,6 +1,5 @@
 import appRootPath from 'app-root-path';
-import { spawn } from 'child_process';
-import os from 'os';
+import { execSync } from 'child_process';
 
 interface ExecFromDirOptions {
   args: string[];
@@ -9,39 +8,17 @@ interface ExecFromDirOptions {
   stdio: 'inherit' | 'pipe';
 }
 
-interface ExecFromDirReturn {
-  stderr: string;
-  stdout: string;
-}
+// 5 MB
+const MAX_BUFFER_SIZE = 1024 * 1024 * 5;
 
 /**
  * Executes a command asynchronously from a specific dir
  */
-export function execFromDir({ args, cmd, cwd, stdio }: ExecFromDirOptions): Promise<ExecFromDirReturn> {
+export function execFromDir({ args, cmd, cwd, stdio }: ExecFromDirOptions) {
   const toExec = `${cmd} ${args.join(' ')}`;
-  console.info(`Executing ${toExec}`);
-  return new Promise<ExecFromDirReturn>((resolve, reject) => {
-    const child = spawn(cmd, args, { stdio });
-    child.once('error', reject);
+  console.info(`Executing ${toExec} in ${cwd}`);
 
-    const stdoutChunks: any[] = [];
-    const stderrChunks: any[] = [];
-
-    child.stdout?.on('data', chunk => stdoutChunks.push(chunk));
-    child.stderr?.on('data', chunk => stderrChunks.push(chunk));
-
-    child.once('exit', code => {
-      const stdout = Buffer.from(stdoutChunks).toString('utf-8');
-      const stderr = Buffer.from(stderrChunks).toString('utf-8');
-      if (code === 0) {
-        return resolve({
-          stdout,
-          stderr,
-        });
-      }
-      return reject(new Error(`Failed to execute ${toExec} because of an error: ${os.EOL}${os.EOL}${stderr}`));
-    });
-  });
+  return execSync(toExec, { cwd, maxBuffer: MAX_BUFFER_SIZE, stdio }).toString('utf-8').trim();
 }
 
 /**

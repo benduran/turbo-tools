@@ -41,13 +41,11 @@ export async function publish(yargs: yargs.Argv) {
       if (versionPrivate) {
         args.push('--all');
       }
-      lernaDetectedChanges = (
-        await execFromRoot({
-          args: args,
-          cmd: 'npx',
-          stdio: 'pipe',
-        })
-      ).stdout.trim();
+      lernaDetectedChanges = execFromRoot({
+        args: args,
+        cmd: 'npx',
+        stdio: 'pipe',
+      });
     } catch (error) {
       const err = error as Error;
       console.error(err.message);
@@ -67,18 +65,18 @@ export async function publish(yargs: yargs.Argv) {
   if (!turboExists) process.exit(1);
 
   if (!skipLint) {
-    await execFromRoot({ cmd: 'npx', args: ['turbo', 'run', 'lint', filterArg], stdio: 'inherit' });
+    execFromRoot({ cmd: 'npx', args: ['turbo', 'run', 'lint', filterArg], stdio: 'inherit' });
   }
 
   if (!skipTest) {
-    await execFromRoot({
+    execFromRoot({
       cmd: 'npx',
       args: ['turbo', 'run', '--continue', 'test', filterArg],
       stdio: 'inherit',
     });
   }
 
-  await execFromRoot({
+  execFromRoot({
     cmd: 'npx',
     args: ['turbo', 'run', '--continue', 'build', filterArg],
     stdio: 'inherit',
@@ -110,7 +108,7 @@ export async function publish(yargs: yargs.Argv) {
   const changedPostBumpPackages = (await findPackages()).filter(p => changedPreBumpLookup.has(p.name));
 
   // rebuild all, again, from root, just to be safe
-  await execFromRoot({ args: ['turbo', 'run', 'build', filterArg], cmd: 'npx', stdio: 'inherit' });
+  execFromRoot({ args: ['turbo', 'run', 'build', filterArg], cmd: 'npx', stdio: 'inherit' });
 
   const publishSuccessMap = {};
   const publishFailureMap = {};
@@ -132,7 +130,7 @@ export async function publish(yargs: yargs.Argv) {
       if (!canPublish) process.exit(1);
 
       if (!dryRun) {
-        await execFromDir({ args: publishArgs, cmd: publishCmd, cwd: packageInfo.packagePath, stdio: 'inherit' });
+        execFromDir({ args: publishArgs, cmd: publishCmd, cwd: packageInfo.packagePath, stdio: 'inherit' });
       } else {
         console.info(`  Publishing ${packageInfo.name} using command:\n    ${publishCmd} ${publishArgs.join(' ')}`);
       }
@@ -160,5 +158,5 @@ export async function publish(yargs: yargs.Argv) {
   console.info('\n\n*********************************************\n');
 
   // cleanup any outstanding changes for a nice working dir
-  await execFromRoot({ args: ['checkout', '.'], cmd: 'git', stdio: 'inherit' });
+  execFromRoot({ args: ['checkout', '.'], cmd: 'git', stdio: 'inherit' });
 }
