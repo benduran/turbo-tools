@@ -147,7 +147,7 @@ export async function versionWithLerna({
         const localTagsOnly = await getLocalGitTags();
         for (const tag of localTagsOnly) {
           execFromRoot({
-            args: ['push', 'origin', `refs/tags/${tag}`],
+            args: ['push', 'origin', tag],
             cmd: 'git',
             stdio: 'inherit',
           });
