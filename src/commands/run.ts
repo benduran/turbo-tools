@@ -1,6 +1,6 @@
 import type yargs from 'yargs';
 
-import { execSyncFromRoot } from '../util';
+import { execFromRoot } from '../util';
 
 /**
  * This is really just a convenience, pass-through command
@@ -10,7 +10,7 @@ export async function run(yargs: yargs.Argv) {
   const argv = await yargs.parserConfiguration({ 'unknown-options-as-args': true }).argv;
 
   try {
-    execSyncFromRoot({
+    await execFromRoot({
       cmd: 'npx',
       args: ['turbo', 'run', ...argv._.slice(1).map(String)],
       stdio: 'inherit',
