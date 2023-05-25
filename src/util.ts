@@ -1,7 +1,7 @@
 import mapWorkspaces from '@npmcli/map-workspaces';
 import appRootPath from 'app-root-path';
 import { detect as detectPackageManager } from 'detect-package-manager';
-import { command, commandSync } from 'execa';
+import execa from 'execa';
 import fs from 'fs-extra';
 import os from 'os';
 import path from 'path';
@@ -19,7 +19,9 @@ interface ExecFromDirOptions {
  * Executes a command synchronously from a specific dir
  */
 export function execSyncFromDir({ args, cmd, cwd, stdio }: ExecFromDirOptions) {
-  return commandSync(`${cmd} ${args.join(' ')}`, { cwd, stdio }).stdout;
+  const toExec = `${cmd} ${args.join(' ')}`;
+  console.info(`Executing ${toExec}`);
+  return execa.sync(cmd, args, { cwd, stdio }).stdout;
 }
 
 /**
@@ -30,7 +32,9 @@ export function execAsyncFromDir({
   cmd,
   cwd,
 }: Omit<ExecFromDirOptions, 'stdio'>): Promise<{ stderr: string; stdout: string }> {
-  return command(`${cmd} ${args.join(' ')}`, { stdio: 'pipe' });
+  const toExec = `${cmd} ${args.join(' ')}`;
+  console.info(`Executing ${toExec}`);
+  return execa(cmd, args, { stdio: 'pipe' });
 }
 
 /**
