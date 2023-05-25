@@ -19,7 +19,8 @@ export async function getLocalGitTags() {
     .map(t => {
       const [sha = '', ref = ''] = t.split(/\s+/);
 
-      return { name: path.basename(ref), sha };
+      // if folks are using a different tag parent, then that's nonstandard
+      return { name: ref.replace('refs/tags/', ''), sha };
     });
 
   // this includes the possible refs/tags prefix (or whichever else custom prefix a user may have setup)
@@ -31,8 +32,7 @@ export async function getLocalGitTags() {
     stdio: 'pipe',
   })
     .split(os.EOL)
-    .filter(Boolean)
-    .map(t => path.basename(t));
+    .filter(Boolean);
 
   return localTags.filter(t => !allRemoteTagsSet.has(t));
 }

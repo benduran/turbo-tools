@@ -146,6 +146,14 @@ export async function versionWithLerna({
         // only push newly-created tags
         const localTagsOnly = await getLocalGitTags();
         for (const tag of localTagsOnly) {
+          // create the tag locally first
+          execFromRoot({
+            args: ['tag', tag],
+            cmd: 'git',
+            stdio: 'inherit',
+          });
+
+          // now we push
           execFromRoot({
             args: ['push', 'origin', tag],
             cmd: 'git',
