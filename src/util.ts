@@ -208,11 +208,13 @@ export function determinePublishTag(releaseAs?: string) {
  * that already exist
  */
 export async function getLocalGitTags() {
-  execSyncFromRoot({
-    args: ['fetch', '--tags'],
-    cmd: 'git',
-    stdio: 'inherit',
-  });
+  // Keep this here, but note: since this is primarily
+  // intended to be run in CI, CI should have the most up-to-date tags when the repo is cloned
+  // execSyncFromRoot({
+  //   args: ['fetch', '--tags'],
+  //   cmd: 'git',
+  //   stdio: 'inherit',
+  // });
   const tagsStr = execSyncFromRoot({
     args: ['--no-pager', 'tag', '--list'],
     cmd: 'git',
