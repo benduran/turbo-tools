@@ -6,7 +6,7 @@ import path from 'path';
 import type yargs from 'yargs';
 
 import { readTurboToolsConfig } from '../config';
-import { execSyncFromDir, findPackages, getPackageManager } from '../util';
+import { execFromDir, findPackages, getPackageManager } from '../util';
 
 /**
  * Bootstraps sane / sensible set of default config files
@@ -107,7 +107,7 @@ export async function init(yargs: yargs.Argv) {
       }),
     );
 
-    execSyncFromDir({ args: ['install'], cmd: which, cwd: monorepoRoot, stdio: 'inherit' });
+    execFromDir({ args: ['install'], cmd: which, cwd: monorepoRoot, stdio: 'inherit' });
   }
 
   await Promise.all(
