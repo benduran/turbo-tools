@@ -1,3 +1,4 @@
+import { getRecommendedBumpsByPackage } from '@better-builds/lets-version';
 import type yargs from 'yargs';
 
 import { readTurboToolsConfig } from '../config';
@@ -9,57 +10,39 @@ import {
   getPackageManager,
   getVersionAndPublishBaseYargs,
   guardTurboExists,
-  versionWithLerna,
+  versionWithLetsVersion,
 } from '../util';
 
 export async function publish(yargs: yargs.Argv) {
-  const { all, dryRun, forceTags, releaseAs, skipLint, skipTest, yes, versionPrivate } =
-    await getVersionAndPublishBaseYargs(yargs)
-      .option('skipLint', {
-        default: false,
-        description: 'If true, skips running the lint command across all changed repositories before publishing',
-        type: 'boolean',
-      })
-      .option('skipTest', {
-        default: false,
-        description: 'If true, skips running the test command across all changed repositories before publishing',
-        type: 'boolean',
-      })
-      .option('versionPrivate', {
-        default: false,
-        description: 'If true, versions the private packages that have changes',
-        type: 'boolean',
-      })
-      .help().argv;
+  const { all, dryRun, noFetchTags, releaseAs, skipLint, skipTest, yes } = await getVersionAndPublishBaseYargs(yargs)
+    .option('skipLint', {
+      default: false,
+      description: 'If true, skips running the lint command across all changed repositories before publishing',
+      type: 'boolean',
+    })
+    .option('skipTest', {
+      default: false,
+      description: 'If true, skips running the test command across all changed repositories before publishing',
+      type: 'boolean',
+    })
+    .help().argv;
 
   const publishTag = determinePublishTag(releaseAs);
 
-  let lernaDetectedChanges = '';
-  if (!all) {
-    try {
-      let args = ['lerna', 'changed'];
-      if (versionPrivate) {
-        args.push('--all');
-      }
-      lernaDetectedChanges = execFromRoot({
-        args: args,
-        cmd: 'npx',
-        stdio: 'pipe',
-      });
-    } catch (error) {
-      const err = error as Error;
-      console.error(err.message);
-      process.exit(err.message.includes('No changed packages found') ? 0 : 1);
-    }
-  }
+  const bumpInfos = await getRecommendedBumpsByPackage(
+    undefined,
+    releaseAs,
+    undefined,
+    all,
+    noFetchTags,
+    undefined,
+    undefined,
+  );
 
-  const changedPreBumpPackages = (await findPackages()).filter(p => all || lernaDetectedChanges.includes(p.name));
-  console.info('\n', changedPreBumpPackages.length, 'changed packages found to publish\n');
-
-  const changedPreBumpLookup = new Set(changedPreBumpPackages.map(p => p.name));
+  const changedPreBumpLookup = new Set(bumpInfos.bumps.map(b => b.packageInfo.name));
 
   const filterArg =
-    changedPreBumpPackages.length > 0 ? changedPreBumpPackages.map(p => `--filter="${p.name}"`).join(' ') : '';
+    bumpInfos.bumps.length > 0 ? bumpInfos.bumps.map(b => `--filter="${b.packageInfo.name}"`).join(' ') : '';
 
   const turboExists = await guardTurboExists();
   if (!turboExists) process.exit(1);
@@ -95,15 +78,24 @@ export async function publish(yargs: yargs.Argv) {
   const publishCmd = customPublishCmd?.cmd ?? whichPackageManager;
   const publishArgs = customPublishCmd?.args ?? ['publish'];
 
-  await versionWithLerna({
+  await versionWithLetsVersion({
     all,
     dryRun,
-    forceTags,
-    publishTag,
+    forceTags: !noFetchTags,
+    publishTag: '',
     releaseAs,
     willPublish: true,
     yes,
   });
+  // await versionWithLerna({
+  //   all,
+  //   dryRun,
+  //   forceTags,
+  //   publishTag,
+  //   releaseAs,
+  //   willPublish: true,
+  //   yes,
+  // });
 
   const changedPostBumpPackages = (await findPackages()).filter(p => changedPreBumpLookup.has(p.name));
 

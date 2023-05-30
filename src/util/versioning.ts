@@ -1,3 +1,4 @@
+import { applyRecommendedBumpsByPackage } from '@better-builds/lets-version';
 import fs from 'fs-extra';
 import path from 'path';
 
@@ -13,6 +14,16 @@ export function determinePublishTag(releaseAs?: string) {
   return releaseAs === 'alpha' || releaseAs === 'beta' ? releaseAs : '';
 }
 
+export interface VersionOpts {
+  all: boolean;
+  dryRun: boolean;
+  forceTags: boolean;
+  releaseAs?: 'major' | 'minor' | 'patch' | 'alpha' | 'beta' | string;
+  publishTag: 'alpha' | 'beta' | '';
+  willPublish: boolean;
+  yes: boolean;
+}
+
 /**
  * Performs version bumps across all registered packages with Lerna's "version" command
  */
@@ -24,15 +35,7 @@ export async function versionWithLerna({
   publishTag,
   willPublish,
   yes,
-}: {
-  all: boolean;
-  dryRun: boolean;
-  forceTags: boolean;
-  releaseAs?: 'major' | 'minor' | 'patch' | 'alpha' | 'beta' | string;
-  publishTag: 'alpha' | 'beta' | '';
-  willPublish: boolean;
-  yes: boolean;
-}) {
+}: VersionOpts) {
   const versionCmd = 'npx';
   const versionArgs = [
     'lerna',
@@ -175,4 +178,11 @@ export async function versionWithLerna({
       });
     }
   }
+}
+
+export async function versionWithLetsVersion(opts: VersionOpts) {
+  await applyRecommendedBumpsByPackage(undefined, opts.releaseAs, undefined, opts.all, opts.forceTags, {
+    yes: opts.yes,
+    dryRun: opts.dryRun,
+  });
 }

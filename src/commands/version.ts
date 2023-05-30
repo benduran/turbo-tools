@@ -1,22 +1,32 @@
 import type yargs from 'yargs';
 
-import { determinePublishTag, getVersionAndPublishBaseYargs, versionWithLerna } from '../util';
+import { getVersionAndPublishBaseYargs, versionWithLetsVersion } from '../util';
 
 /**
  * This performs only version bumps of packages in your monorepo
  */
 export async function version(yargs: yargs.Argv) {
-  const { all, dryRun, forceTags, releaseAs, yes } = await getVersionAndPublishBaseYargs(yargs).help().argv;
+  const { all, dryRun, noFetchTags, releaseAs, yes } = await getVersionAndPublishBaseYargs(yargs).help().argv;
 
-  const publishTag = determinePublishTag(releaseAs);
-
-  await versionWithLerna({
+  await versionWithLetsVersion({
     all,
     dryRun,
-    forceTags,
+    forceTags: !noFetchTags,
+    publishTag: '',
     releaseAs,
-    publishTag,
     willPublish: false,
     yes,
   });
+
+  // const publishTag = determinePublishTag(releaseAs);
+
+  // await versionWithLerna({
+  //   all,
+  //   dryRun,
+  //   forceTags, // we will overload this property to prevent changing API surface area everywhere
+  //   releaseAs,
+  //   publishTag,
+  //   willPublish: false,
+  //   yes,
+  // });
 }
