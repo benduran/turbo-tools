@@ -1,3 +1,11 @@
+## 3.2.1-beta.6 (2023-05-30)
+
+### ✨ Features ✨
+
+* added fetching all git info (b79e35ab3f4cd8dffcfacbda85ae34a77ed4222f)
+
+---
+
 ## 3.2.1-beta.5 (2023-05-30)
 
 ### 🛠️ Fixes 🛠️
