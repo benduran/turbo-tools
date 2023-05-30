@@ -1,13 +1,15 @@
 {
   "description": "A collection of TurboRepo CLI tools to test, lint, build, version and publish packages in your Turborepo monorepo",
   "name": "@better-builds/turbo-tools",
-  "version": "3.2.1-beta.1",
+  "version": "3.2.1-beta.2",
   "exports": "./dist/index.js",
   "bin": "./dist/cli.js",
   "type": "module",
   "types": "./dist/index.d.ts",
   "typings": "./dist/index.d.ts",
-  "files": ["./dist"],
+  "files": [
+    "./dist"
+  ],
   "license": "MPL-2.0",
   "keywords": [
     "turbo",

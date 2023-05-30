@@ -1,3 +1,17 @@
+## 3.2.1-beta.2 (2023-05-30)
+
+### 🔀 Miscellaneous 🔀
+
+* updated package.json exports (08399805f644a5e5f9c6120c700025a87fd9af42)
+
+
+
+### 🛠️ Fixes 🛠️
+
+* updated all files to .js files (d9078b2ac1bff075c5d4fe456ac6d3070829ee30)
+
+---
+
 ## 3.2.1-beta.1 (2023-05-29)
 
 ### 🚨 Breaking Changes 🚨
