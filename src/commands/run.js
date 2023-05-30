@@ -2,7 +2,7 @@
  * @typedef {import('yargs').Argv} Argv
  */
 
-import { execFromRoot } from '../util/index.mjs';
+import { execFromRoot } from '../util/index.js';
 
 /**
  * This is really just a convenience, pass-through command

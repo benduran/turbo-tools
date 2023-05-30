@@ -2,8 +2,8 @@
   "description": "A collection of TurboRepo CLI tools to test, lint, build, version and publish packages in your Turborepo monorepo",
   "name": "@better-builds/turbo-tools",
   "version": "3.2.1-beta.1",
-  "module": "./index.mjs",
-  "bin": "./cli.mjs",
+  "exports": "./index.js",
+  "bin": "./cli.js",
   "type": "module",
   "license": "MPL-2.0",
   "keywords": [
@@ -20,21 +20,27 @@
     "url": "git+https://github.com/benduran/turbo-tools.git"
   },
   "scripts": {
+    "build": "run-s clean compile",
     "clean": "rm -rf ./dist",
-    "build": "./scripts/prepDist.js",
-    "lint": "eslint './src/**/*.{ts,tsx}'",
-    "lint:fix": "eslint './src/**/*.{ts,tsx}' --fix",
-    "postinstall": "husky install",
-    "start": "TS_NODE_FILES=true ts-node ./src/cli.ts"
+    "compile": "tsc --project ./tsconfig.json",
+    "lint": "eslint --no-error-on-unmatched-pattern './src/**/*.{tsx,ts,jsx,js,mjs}'",
+    "lint:fix": "npm run lint -- --fix",
+    "start": "node src/cli.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --project ./tsconfig.json",
+    "typecheck:staged": "tsc --noEmit --allowJs --skipLibCheck"
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.1",
     "@types/yargs": "^17.0.24",
     "eslint-config-react-yas": "^4.0.0",
+    "lint-staged": "^13.2.2",
+    "npm-run-all": "^4.1.5",
     "type-fest": "^3.11.0"
   },
   "dependencies": {
-    "@better-builds/lets-version": "^0.1.1-beta.9",
+    "@better-builds/lets-version": "^0.1.1-beta.12",
     "@commitlint/cli": "^17.6.3",
     "@commitlint/config-conventional": "^17.6.3",
     "@npmcli/map-workspaces": "^3.0.4",
@@ -48,5 +54,10 @@
     "typescript": "^4.9.5",
     "yargs": "^17.7.2"
   },
-  "versionedAt": "2022-12-12T17:00:27.634Z"
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,mjs,mts}": [
+      "eslint",
+      "npm run typecheck:staged --"
+    ]
+  }
 }

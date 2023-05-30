@@ -6,7 +6,7 @@
 
 import { EOL } from 'os';
 
-import { findPackages } from '../util/index.mjs';
+import { findPackages } from '../util/index.js';
 
 /**
  * Lists all the packages in the monorepo, as detected

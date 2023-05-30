@@ -8,8 +8,8 @@ import glob from 'fast-glob';
 import fs from 'fs-extra';
 import path from 'path';
 
-import { readTurboToolsConfig } from '../config.mjs';
-import { execFromDir, findPackages, getPackageManager } from '../util/index.mjs';
+import { readTurboToolsConfig } from '../config.js';
+import { execFromDir, findPackages, getPackageManager } from '../util/index.js';
 
 /**
  * Bootstraps sane / sensible set of default config files

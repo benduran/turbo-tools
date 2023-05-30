@@ -1,6 +1,6 @@
 import os from 'os';
 
-import { execFromDir, execFromRoot } from './childProcess.mjs';
+import { execFromDir, execFromRoot } from './childProcess.js';
 
 /**
  * Determines which git tags only exist locally.

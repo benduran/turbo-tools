@@ -7,8 +7,8 @@ import appRootPath from 'app-root-path';
 import fs from 'fs-extra';
 import path from 'path';
 
-import { execFromDir } from './childProcess.mjs';
-import { getPackageManager } from './getPackageManager.mjs';
+import { execFromDir } from './childProcess.js';
+import { getPackageManager } from './getPackageManager.js';
 
 /**
  * Grabs all the workspaces from the monorepo root

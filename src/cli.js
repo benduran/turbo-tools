@@ -3,7 +3,7 @@
 import setupYargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 
-import { init, list, publish, run, version } from './commands/index.mjs';
+import { init, list, publish, run, version } from './commands/index.js';
 
 export async function monorepoToolsCLI() {
   const yargs = setupYargs(hideBin(process.argv));

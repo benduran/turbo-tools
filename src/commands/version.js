@@ -2,7 +2,7 @@
  * @typedef {import('yargs').Argv} Argv
  */
 
-import { getVersionAndPublishBaseYargs, versionWithLetsVersion } from '../util/index.mjs';
+import { getVersionAndPublishBaseYargs, versionWithLetsVersion } from '../util/index.js';
 
 /**
  * This performs only version bumps of packages in your monorepo

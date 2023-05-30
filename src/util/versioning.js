@@ -1,4 +1,4 @@
-import { applyRecommendedBumpsByPackage } from '@better-builds/lets-version/dist/lets-version.mjs';
+import { applyRecommendedBumpsByPackage } from '@better-builds/lets-version';
 
 /**
  * Determines the release tag to use before publishing to NPM

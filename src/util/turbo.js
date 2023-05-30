@@ -2,7 +2,7 @@ import appRootPath from 'app-root-path';
 import fs from 'fs-extra';
 import path from 'path';
 
-import { execFromRoot } from './childProcess.mjs';
+import { execFromRoot } from './childProcess.js';
 
 /**
  * Utility function that performs checks to determine

@@ -2,9 +2,9 @@
  * @typedef {import('yargs').Argv} Argv
  */
 
-import { getRecommendedBumpsByPackage } from '@better-builds/lets-version/dist/lets-version.mjs';
+import { getRecommendedBumpsByPackage } from '@better-builds/lets-version';
 
-import { readTurboToolsConfig } from '../config.mjs';
+import { readTurboToolsConfig } from '../config.js';
 import {
   determinePublishTag,
   execFromDir,
@@ -14,7 +14,7 @@ import {
   getVersionAndPublishBaseYargs,
   guardTurboExists,
   versionWithLetsVersion,
-} from '../util/index.mjs';
+} from '../util/index.js';
 
 /**
  *
