@@ -1,15 +1,20 @@
 #!/usr/bin/env node
 
-import { EOL } from 'os';
-import type yargs from 'yargs';
+/**
+ * @typedef {import('yargs').Argv} Argv
+ */
 
-import { findPackages } from '../util';
+import { EOL } from 'os';
+
+import { findPackages } from '../util/index.mjs';
 
 /**
  * Lists all the packages in the monorepo, as detected
  * by the official NPM CLI
+ *
+ * @param {Argv} yargs
  */
-export async function list(yargs: yargs.Argv) {
+export async function list(yargs) {
   const { json } = await yargs.option('json', {
     alias: 'j',
     description:

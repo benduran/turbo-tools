@@ -2,24 +2,7 @@ import appRootPath from 'app-root-path';
 import fs from 'fs-extra';
 import path from 'path';
 
-import { execFromRoot } from './childProcess';
-
-type TurboJson = Partial<Record<'@schema', string>> &
-  Partial<
-    Record<
-      'pipeline',
-      Record<
-        string,
-        {
-          cache?: boolean;
-          dependsOn?: string[];
-          inputs?: string[];
-          outputMode?: 'full' | 'hash-only' | 'new-only' | 'none';
-          outputs?: string[];
-        }
-      >
-    >
-  >;
+import { execFromRoot } from './childProcess.mjs';
 
 /**
  * Utility function that performs checks to determine
@@ -43,7 +26,7 @@ export async function guardTurboExists() {
     console.error('turbo.json is missing. unable to use the turbo-tools');
     return false;
   }
-  const turboJsonContents = JSON.parse(await fs.readFile(turboJsonPath, 'utf8')) as TurboJson;
+  const turboJsonContents = JSON.parse(await fs.readFile(turboJsonPath, 'utf8'));
   if (!turboJsonContents.pipeline?.build) {
     console.error('turbo.json is missing a "build" pipeline. unable to use the turbo-tools');
     return false;

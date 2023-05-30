@@ -1,7 +1,10 @@
-import { getRecommendedBumpsByPackage } from '@better-builds/lets-version';
-import type yargs from 'yargs';
+/**
+ * @typedef {import('yargs').Argv} Argv
+ */
 
-import { readTurboToolsConfig } from '../config';
+import { getRecommendedBumpsByPackage } from '@better-builds/lets-version/dist/lets-version.mjs';
+
+import { readTurboToolsConfig } from '../config.mjs';
 import {
   determinePublishTag,
   execFromDir,
@@ -11,9 +14,13 @@ import {
   getVersionAndPublishBaseYargs,
   guardTurboExists,
   versionWithLetsVersion,
-} from '../util';
+} from '../util/index.mjs';
 
-export async function publish(yargs: yargs.Argv) {
+/**
+ *
+ * @param {Argv} yargs
+ */
+export async function publish(yargs) {
   const { all, dryRun, noFetchTags, releaseAs, skipLint, skipTest, yes } = await getVersionAndPublishBaseYargs(yargs)
     .option('skipLint', {
       default: false,
@@ -69,7 +76,6 @@ export async function publish(yargs: yargs.Argv) {
   const customPublishCmd = turboToolsCustomConfig?.publish?.getCommand?.({
     all,
     dryRun,
-    publishTag,
     releaseAs,
     yes,
   });
@@ -82,20 +88,10 @@ export async function publish(yargs: yargs.Argv) {
     all,
     dryRun,
     forceTags: !noFetchTags,
-    publishTag: '',
     releaseAs,
     willPublish: true,
     yes,
   });
-  // await versionWithLerna({
-  //   all,
-  //   dryRun,
-  //   forceTags,
-  //   publishTag,
-  //   releaseAs,
-  //   willPublish: true,
-  //   yes,
-  // });
 
   const changedPostBumpPackages = (await findPackages()).filter(p => changedPreBumpLookup.has(p.name));
 
@@ -126,10 +122,12 @@ export async function publish(yargs: yargs.Argv) {
       } else {
         console.info(`  Publishing ${packageInfo.name} using command:\n    ${publishCmd} ${publishArgs.join(' ')}`);
       }
+      // @ts-ignore
       publishSuccessMap[packageInfo.name] = packageInfo.version;
     } catch (error) {
       console.error(`FAIL: ${packageInfo.name} failed to publish!`);
       console.error(error);
+      // @ts-ignore
       publishFailureMap[packageInfo.name] = packageInfo.version;
     }
   }

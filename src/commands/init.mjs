@@ -1,18 +1,23 @@
+/**
+ * @typedef {import('yargs').Argv} Argv
+ */
+
 import appRootPath from 'app-root-path';
 import deepMerge from 'deepmerge';
 import glob from 'fast-glob';
 import fs from 'fs-extra';
 import path from 'path';
-import type yargs from 'yargs';
 
-import { readTurboToolsConfig } from '../config';
-import { execFromDir, findPackages, getPackageManager } from '../util';
+import { readTurboToolsConfig } from '../config.mjs';
+import { execFromDir, findPackages, getPackageManager } from '../util/index.mjs';
 
 /**
  * Bootstraps sane / sensible set of default config files
  * needed to power a successful but opinionated UI monorepo
+ *
+ * @param {Argv} yargs
  */
-export async function init(yargs: yargs.Argv) {
+export async function init(yargs) {
   console.info('Running init');
   const { noDeps, noPublish } = await yargs
     .option('noPublish', {
@@ -53,7 +58,9 @@ export async function init(yargs: yargs.Argv) {
       publishingTemplates.map(async tpath => {
         const filename = path.basename(tpath);
         const dest = path.join(monorepoRoot, filename);
-        let content: Buffer | string = await fs.readFile(tpath);
+
+        /** @type {Buffer | string} */
+        let content = await fs.readFile(tpath);
         if (filename.includes('publish-changed-packages.sh')) {
           const strContents = content.toString('utf-8');
           content = strContents.replace(/{{whichPackageManager}}/gm, which === 'npm' ? 'npx' : which);

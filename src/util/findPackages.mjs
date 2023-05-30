@@ -1,11 +1,14 @@
+/**
+ * @typedef {import('type-fest').PackageJson} PackageJson
+ */
+
 import mapWorkspaces from '@npmcli/map-workspaces';
 import appRootPath from 'app-root-path';
 import fs from 'fs-extra';
 import path from 'path';
-import { PackageJson } from 'type-fest';
 
-import { execFromDir } from './childProcess';
-import { getPackageManager } from './getPackageManager';
+import { execFromDir } from './childProcess.mjs';
+import { getPackageManager } from './getPackageManager.mjs';
 
 /**
  * Grabs all the workspaces from the monorepo root
@@ -14,10 +17,12 @@ export async function findPackages(monorepoRoot = appRootPath.toString()) {
   const whichPM = await getPackageManager(monorepoRoot);
   const rootPJSON = JSON.parse(await fs.readFile(path.join(monorepoRoot, 'package.json'), 'utf8'));
 
-  let workspaces: Map<string, string>;
+  /** @type {Map<string, string>} */
+  let workspaces;
 
   if (whichPM === 'pnpm') {
     // this will also include the ROOT workspace, which we need to manually exclude
+    /** @type {Array<{ name: string; path: string; private: boolean; version: string }>} */
     const foundPnpmWorkspaces = JSON.parse(
       execFromDir({
         args: ['list', '-r', '--depth', '-1', '--json'],
@@ -25,7 +30,7 @@ export async function findPackages(monorepoRoot = appRootPath.toString()) {
         cwd: monorepoRoot,
         stdio: 'pipe',
       }),
-    ) as Array<{ name: string; path: string; private: boolean; version: string }>;
+    );
     workspaces = new Map(foundPnpmWorkspaces.filter(w => w.name !== rootPJSON.name).map(w => [w.name, w.path]));
   } else {
     // yarn and npm use the same "workspaces" field in the package.json,
@@ -38,7 +43,8 @@ export async function findPackages(monorepoRoot = appRootPath.toString()) {
 
   const packages = await Promise.all(
     Array.from(workspaces.entries()).map(async ([name, packagePath]) => {
-      const pjson = JSON.parse(await fs.readFile(path.join(packagePath, 'package.json'), 'utf8')) as PackageJson;
+      /** @type {PackageJson} */
+      const pjson = JSON.parse(await fs.readFile(path.join(packagePath, 'package.json'), 'utf8'));
       return {
         isPrivate: pjson.private ?? false,
         name,

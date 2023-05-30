@@ -1,10 +1,14 @@
-import yargs from 'yargs';
+/**
+ * @typedef {import('yargs').Argv} Argv
+ */
 
 /**
  * Utility Yargs function to be used between the Publish and Version CLI commands.
  * Maps a shared, baseline set of CLI args between both
+ *
+ * @param {Argv} yargs
  */
-export function getVersionAndPublishBaseYargs(yargs: yargs.Argv) {
+export function getVersionAndPublishBaseYargs(yargs) {
   return yargs
     .option('all', {
       alias: 'a',
