@@ -24,6 +24,11 @@ export function getVersionAndPublishBaseYargs(yargs) {
         'If true, will perform all steps right up until publish, and then output what would happen if publish were to continue',
       type: 'boolean',
     })
+    .option('noFetchAll', {
+      default: false,
+      description: 'If true, will not fetch information from remote via "git fetch origin"',
+      type: 'boolean',
+    })
     .option('noFetchTags', {
       default: false,
       description:
