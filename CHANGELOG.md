@@ -1,3 +1,11 @@
+## 3.2.1-beta.5 (2023-05-30)
+
+### 🛠️ Fixes 🛠️
+
+* do not continue if user said no (510f8847d18f1174823dd75c0de5aabbf9cce15b)
+
+---
+
 ## 3.2.1-beta.4 (2023-05-30)
 
 ### 🔀 Miscellaneous 🔀
