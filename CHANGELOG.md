@@ -1,3 +1,11 @@
+## 3.2.1-beta.1 (2023-05-29)
+
+### 🚨 Breaking Changes 🚨
+
+* migrate to mjs (d85122f2a54cc6f12ad5f02f4b262a8b72c68c86)
+
+---
+
 ## 3.2.1-beta.0 (2023-05-29)
 
 ### 🚨 Breaking Changes 🚨
