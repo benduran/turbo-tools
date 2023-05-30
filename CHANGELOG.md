@@ -1,3 +1,11 @@
+## 3.2.1-beta.3 (2023-05-30)
+
+### 🔀 Miscellaneous 🔀
+
+* fixed bootstrapper and updated readme (4ea47dedc980fa8666eaa760dbfc49816ab00fe0)
+
+---
+
 ## 3.2.1-beta.2 (2023-05-30)
 
 ### 🔀 Miscellaneous 🔀
