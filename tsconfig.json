@@ -1,36 +1,35 @@
 {
   "compilerOptions": {
+    "target": "ES2022",
     "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ESNext"
+      "ESNext",
+      "DOM"
     ],
-    "jsx": "react",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
+    "module": "ES2022",
+    "moduleResolution": "nodenext",
+    "allowJs": true,
+    "checkJs": true,
     "declaration": true,
-    "newLine": "lf",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "importsNotUsedAsValues": "remove",
     "isolatedModules": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "strictNullChecks": true,
     "strictFunctionTypes": true,
     "strictBindCallApply": true,
-    "module": "CommonJS",
+    "strictPropertyInitialization": true,
     "noImplicitThis": true,
-    "noUnusedLocals": true,
-    "noImplicitReturns": false,
+    "useUnknownInCatchVariables": false,
+    "alwaysStrict": true,
+    "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,
-    "noImplicitOverride": true,
-    "outDir": "dist/",
-    "rootDir": "src/",
-    "skipLibCheck": true,
-    "sourceMap": false,
-    "target": "ES2020",
-    "useUnknownInCatchVariables": true
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true
   },
   "include": ["src/"]
 }

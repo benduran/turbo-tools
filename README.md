@@ -13,6 +13,8 @@ Turbo Tools add the ability for you to perform version bumps of all your package
 
 **Turbo Tools supports `npm`, `yarn` and `pnpm`.**
 
+You must have `turbo@>1.9.9` declare in your `package.json` file.
+
 ---
 
 ## installation
@@ -172,6 +174,7 @@ module.exports = defineTurboConfig({
 });
 ```
 
-## contributing
-
-This repository was built using Node `18.13.0` and `npm 9.3.0`. Please be sure you have those installed before contributing and issuing a PR. To get started, simply run `npm install`!
+## get started contributing
+1. Clone this repo
+2. Run `./repo-setup.sh`
+3. Happy hacking! ⌨️

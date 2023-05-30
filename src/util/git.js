@@ -1,6 +1,6 @@
 import os from 'os';
 
-import { execFromDir, execFromRoot } from './childProcess';
+import { execFromDir, execFromRoot } from './childProcess.js';
 
 /**
  * Determines which git tags only exist locally.
@@ -39,8 +39,10 @@ export async function getLocalGitTags() {
 /**
  * Detects the default branch where all PRs and branches are merged.
  * Useful when initializing a repo with the turbo-tools
+ *
+ * @param {string} cwd
  */
-export async function getDefaultGitBranch(cwd: string) {
+export async function getDefaultGitBranch(cwd) {
   try {
     const stdout = execFromDir({
       args: ['symbolic-ref', 'refs/remotes/origin/HEAD'],

@@ -1,12 +1,16 @@
-import type yargs from 'yargs';
+/**
+ * @typedef {import('yargs').Argv} Argv
+ */
 
-import { execFromRoot } from '../util';
+import { execFromRoot } from '../util/index.js';
 
 /**
  * This is really just a convenience, pass-through command
  * that pipes straight into Turborepo
+ *
+ * @param {Argv} yargs
  */
-export async function run(yargs: yargs.Argv) {
+export async function run(yargs) {
   const argv = await yargs.parserConfiguration({ 'unknown-options-as-args': true }).argv;
 
   try {

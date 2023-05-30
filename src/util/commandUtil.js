@@ -1,10 +1,14 @@
-import yargs from 'yargs';
+/**
+ * @typedef {import('yargs').Argv} Argv
+ */
 
 /**
  * Utility Yargs function to be used between the Publish and Version CLI commands.
  * Maps a shared, baseline set of CLI args between both
+ *
+ * @param {Argv} yargs
  */
-export function getVersionAndPublishBaseYargs(yargs: yargs.Argv) {
+export function getVersionAndPublishBaseYargs(yargs) {
   return yargs
     .option('all', {
       alias: 'a',
@@ -20,9 +24,10 @@ export function getVersionAndPublishBaseYargs(yargs: yargs.Argv) {
         'If true, will perform all steps right up until publish, and then output what would happen if publish were to continue',
       type: 'boolean',
     })
-    .option('forceTags', {
+    .option('noFetchTags', {
       default: false,
-      description: 'If true, will force push all git tags, both new and existing, to upstream',
+      description:
+        'If true, does not force fetch tags from origin. By default, lets-version will do "git fetch origin --tags --force" to ensure your branch if up-to-date with the tags on origin',
       type: 'boolean',
     })
     .option('releaseAs', {

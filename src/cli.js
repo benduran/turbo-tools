@@ -1,10 +1,12 @@
 #!/usr/bin/env node
 
-import yargs from 'yargs';
+import setupYargs from 'yargs';
+import { hideBin } from 'yargs/helpers';
 
-import { init, list, publish, run, version } from './commands';
+import { init, list, publish, run, version } from './commands/index.js';
 
 export async function monorepoToolsCLI() {
+  const yargs = setupYargs(hideBin(process.argv));
   const argv = await yargs
     .scriptName('turbo-tools')
     .command('version', 'Skips publishing and just version bumps packages in your monorepo', version)
