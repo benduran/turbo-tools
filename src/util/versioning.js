@@ -23,8 +23,10 @@ export function determinePublishTag(releaseAs) {
  * @param {VersionOpts} opts
  */
 export async function versionWithLetsVersion(opts) {
-  await applyRecommendedBumpsByPackage(undefined, opts.releaseAs, undefined, opts.all, opts.forceTags, {
+  const result = await applyRecommendedBumpsByPackage(undefined, opts.releaseAs, undefined, opts.all, opts.forceTags, {
     yes: opts.yes,
     dryRun: opts.dryRun,
   });
+
+  return Boolean(result?.bumps.length);
 }

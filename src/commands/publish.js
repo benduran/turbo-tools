@@ -84,7 +84,7 @@ export async function publish(yargs) {
   const publishCmd = customPublishCmd?.cmd ?? whichPackageManager;
   const publishArgs = customPublishCmd?.args ?? ['publish'];
 
-  await versionWithLetsVersion({
+  const success = await versionWithLetsVersion({
     all,
     dryRun,
     forceTags: !noFetchTags,
@@ -92,6 +92,8 @@ export async function publish(yargs) {
     willPublish: true,
     yes,
   });
+
+  if (!success) return console.info('Version bumps were aborted');
 
   const changedPostBumpPackages = (await findPackages()).filter(p => changedPreBumpLookup.has(p.name));
 
