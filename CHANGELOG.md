@@ -1,3 +1,11 @@
+## 3.2.2-beta.1 (2023-05-31)
+
+### 🔀 Miscellaneous 🔀
+
+* bumped version of lets-version that features shallow clone detection (69ef840b8dfa854d6437e7ba945cea6aa863475b)
+
+---
+
 ## 3.2.2-beta.0 (2023-05-30)
 
 ### 🔀 Miscellaneous 🔀
