@@ -1,3 +1,12 @@
+## 3.2.2-beta.0 (2023-05-30)
+
+### 🔀 Miscellaneous 🔀
+
+* bumped (ccb4b6def6fd997026690bd409eb6170166ab410)
+* Merge pull request #7 from benduran/bduran/publish-tweaks (db29b23c98f904bfd13be3212360a17df270f666)
+
+---
+
 ## 3.2.1-oneoff.1 (2023-05-30)
 
 ### 🔀 Miscellaneous 🔀
