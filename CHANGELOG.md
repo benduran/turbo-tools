@@ -1,3 +1,11 @@
+## 3.2.1-oneoff.0 (2023-05-30)
+
+### 🛠️ Fixes 🛠️
+
+* use oneoff version of lets-version for testing PM installs (cb7524d29f4b40fd9711348ad9c2556bed49b514)
+
+---
+
 ## 3.2.1-beta.6 (2023-05-30)
 
 ### ✨ Features ✨
