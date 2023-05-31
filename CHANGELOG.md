@@ -1,3 +1,11 @@
+## 3.2.1-oneoff.1 (2023-05-30)
+
+### 🔀 Miscellaneous 🔀
+
+* bumped lets-version (9cc8eeb7efff5307b5000d64d846696d58f3c7a7)
+
+---
+
 ## 3.2.1-oneoff.0 (2023-05-30)
 
 ### 🛠️ Fixes 🛠️
