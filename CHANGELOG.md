@@ -1,3 +1,11 @@
+## 3.2.2-beta.2 (2023-05-31)
+
+### ✨ Features ✨
+
+* bumped lets-version which uses singleton promises for fetching (5e2eba3113bb6f1cb093be3f5ea8222d8a89ba1b)
+
+---
+
 ## 3.2.2-beta.1 (2023-05-31)
 
 ### 🔀 Miscellaneous 🔀
