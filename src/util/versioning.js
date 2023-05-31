@@ -13,6 +13,7 @@ export function determinePublishTag(releaseAs) {
  * @typedef {Object} VersionOpts
  * @property {boolean} all
  * @property {boolean} dryRun
+ * @property {boolean} noFetchAll
  * @property {boolean} forceTags
  * @property {'major' | 'minor' | 'patch' | 'alpha' | 'beta' | string} [releaseAs]
  * @property {boolean} willPublish
@@ -23,8 +24,18 @@ export function determinePublishTag(releaseAs) {
  * @param {VersionOpts} opts
  */
 export async function versionWithLetsVersion(opts) {
-  await applyRecommendedBumpsByPackage(undefined, opts.releaseAs, undefined, opts.all, opts.forceTags, {
-    yes: opts.yes,
-    dryRun: opts.dryRun,
-  });
+  const result = await applyRecommendedBumpsByPackage(
+    undefined,
+    opts.releaseAs,
+    undefined,
+    opts.all,
+    opts.noFetchAll,
+    opts.forceTags,
+    {
+      yes: opts.yes,
+      dryRun: opts.dryRun,
+    },
+  );
+
+  return Boolean(result?.bumps.length);
 }

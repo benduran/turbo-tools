@@ -9,14 +9,18 @@ import { getVersionAndPublishBaseYargs, versionWithLetsVersion } from '../util/i
  * @param {Argv} yargs
  */
 export async function version(yargs) {
-  const { all, dryRun, noFetchTags, releaseAs, yes } = await getVersionAndPublishBaseYargs(yargs).help().argv;
+  const { all, dryRun, noFetchAll, noFetchTags, releaseAs, yes } = await getVersionAndPublishBaseYargs(yargs).help()
+    .argv;
 
-  await versionWithLetsVersion({
+  const success = await versionWithLetsVersion({
     all,
     dryRun,
     forceTags: !noFetchTags,
+    noFetchAll,
     releaseAs,
     willPublish: false,
     yes,
   });
+
+  console.info(success ? 'Sucessfully bumped versions' : 'Version bumps were aborted');
 }

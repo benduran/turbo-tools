@@ -1,3 +1,35 @@
+## 3.2.1-oneoff.1 (2023-05-30)
+
+### 🔀 Miscellaneous 🔀
+
+* bumped lets-version (9cc8eeb7efff5307b5000d64d846696d58f3c7a7)
+
+---
+
+## 3.2.1-oneoff.0 (2023-05-30)
+
+### 🛠️ Fixes 🛠️
+
+* use oneoff version of lets-version for testing PM installs (cb7524d29f4b40fd9711348ad9c2556bed49b514)
+
+---
+
+## 3.2.1-beta.6 (2023-05-30)
+
+### ✨ Features ✨
+
+* added fetching all git info (b79e35ab3f4cd8dffcfacbda85ae34a77ed4222f)
+
+---
+
+## 3.2.1-beta.5 (2023-05-30)
+
+### 🛠️ Fixes 🛠️
+
+* do not continue if user said no (510f8847d18f1174823dd75c0de5aabbf9cce15b)
+
+---
+
 ## 3.2.1-beta.4 (2023-05-30)
 
 ### 🔀 Miscellaneous 🔀

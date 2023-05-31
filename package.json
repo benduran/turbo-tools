@@ -1,7 +1,7 @@
 {
   "description": "A collection of TurboRepo CLI tools to test, lint, build, version and publish packages in your Turborepo monorepo",
   "name": "@better-builds/turbo-tools",
-  "version": "3.2.1-beta.4",
+  "version": "3.2.1-oneoff.1",
   "exports": "./dist/index.js",
   "bin": "./dist/cli.js",
   "type": "module",
@@ -45,7 +45,7 @@
     "type-fest": "^3.11.0"
   },
   "dependencies": {
-    "@better-builds/lets-version": "^0.1.1-beta.12",
+    "@better-builds/lets-version": "^0.1.1-oneoff.1",
     "@commitlint/cli": "^17.6.3",
     "@commitlint/config-conventional": "^17.6.3",
     "@npmcli/map-workspaces": "^3.0.4",

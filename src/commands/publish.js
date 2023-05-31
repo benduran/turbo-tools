@@ -21,18 +21,19 @@ import {
  * @param {Argv} yargs
  */
 export async function publish(yargs) {
-  const { all, dryRun, noFetchTags, releaseAs, skipLint, skipTest, yes } = await getVersionAndPublishBaseYargs(yargs)
-    .option('skipLint', {
-      default: false,
-      description: 'If true, skips running the lint command across all changed repositories before publishing',
-      type: 'boolean',
-    })
-    .option('skipTest', {
-      default: false,
-      description: 'If true, skips running the test command across all changed repositories before publishing',
-      type: 'boolean',
-    })
-    .help().argv;
+  const { all, dryRun, noFetchAll, noFetchTags, releaseAs, skipLint, skipTest, yes } =
+    await getVersionAndPublishBaseYargs(yargs)
+      .option('skipLint', {
+        default: false,
+        description: 'If true, skips running the lint command across all changed repositories before publishing',
+        type: 'boolean',
+      })
+      .option('skipTest', {
+        default: false,
+        description: 'If true, skips running the test command across all changed repositories before publishing',
+        type: 'boolean',
+      })
+      .help().argv;
 
   const publishTag = determinePublishTag(releaseAs);
 
@@ -84,14 +85,17 @@ export async function publish(yargs) {
   const publishCmd = customPublishCmd?.cmd ?? whichPackageManager;
   const publishArgs = customPublishCmd?.args ?? ['publish'];
 
-  await versionWithLetsVersion({
+  const success = await versionWithLetsVersion({
     all,
     dryRun,
     forceTags: !noFetchTags,
+    noFetchAll,
     releaseAs,
     willPublish: true,
     yes,
   });
+
+  if (!success) return console.info('Version bumps were aborted');
 
   const changedPostBumpPackages = (await findPackages()).filter(p => changedPreBumpLookup.has(p.name));
 
