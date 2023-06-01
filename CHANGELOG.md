@@ -1,3 +1,11 @@
+## 3.2.2-beta.3 (2023-06-01)
+
+### 🔀 Miscellaneous 🔀
+
+* updated lets-version (458875b6a0acff667edb896b5f5597b7a065b6c4)
+
+---
+
 ## 3.2.2-beta.2 (2023-05-31)
 
 ### ✨ Features ✨
