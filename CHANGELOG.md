@@ -1,3 +1,11 @@
+## 3.2.2-beta.4 (2023-06-02)
+
+### 🔀 Miscellaneous 🔀
+
+* bumped lets-version (0c7a7d4ac32918951b39667c39df597878c5bb45)
+
+---
+
 ## 3.2.2-beta.3 (2023-06-01)
 
 ### 🔀 Miscellaneous 🔀
