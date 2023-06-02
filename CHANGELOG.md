@@ -1,3 +1,11 @@
+## 3.2.2-beta.6 (2023-06-02)
+
+### ✨ Features ✨
+
+* added ability to skip building when publishing (40b2e471477a932c6834bde6fcaf2fc64179ae90)
+
+---
+
 ## 3.2.2-beta.5 (2023-06-02)
 
 ### 🛠️ Fixes 🛠️
