@@ -1,3 +1,11 @@
+## 3.2.2-beta.5 (2023-06-02)
+
+### 🛠️ Fixes 🛠️
+
+* fixed __dirname not available in modules (f46f6723498f08e138ee2e4d8aab78e5b1901ab3)
+
+---
+
 ## 3.2.2-beta.4 (2023-06-02)
 
 ### 🔀 Miscellaneous 🔀
