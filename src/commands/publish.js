@@ -27,6 +27,7 @@ export async function publish(yargs) {
         default: false,
         description:
           'If true, skips running the build command across all changed repositories before attempting to publish',
+        type: 'boolean',
       })
       .option('skipLint', {
         default: false,
