@@ -7,9 +7,12 @@ import deepMerge from 'deepmerge';
 import glob from 'fast-glob';
 import fs from 'fs-extra';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
 import { readTurboToolsConfig } from '../config.js';
 import { execFromDir, findPackages, getPackageManager } from '../util/index.js';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /**
  * Bootstraps sane / sensible set of default config files
