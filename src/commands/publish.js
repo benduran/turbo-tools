@@ -21,16 +21,23 @@ import {
  * @param {Argv} yargs
  */
 export async function publish(yargs) {
-  const { all, dryRun, noFetchAll, noFetchTags, releaseAs, skipLint, skipTest, yes } =
+  const { all, dryRun, noFetchAll, noFetchTags, releaseAs, skipBuild, skipLint, skipTest, yes } =
     await getVersionAndPublishBaseYargs(yargs)
+      .option('skipBuild', {
+        default: false,
+        description:
+          'If true, skips running the build command across all changed repositories before attempting to publish',
+      })
       .option('skipLint', {
         default: false,
-        description: 'If true, skips running the lint command across all changed repositories before publishing',
+        description:
+          'If true, skips running the lint command across all changed repositories before attempting to publish',
         type: 'boolean',
       })
       .option('skipTest', {
         default: false,
-        description: 'If true, skips running the test command across all changed repositories before publishing',
+        description:
+          'If true, skips running the test command across all changed repositories before attempting to publish',
         type: 'boolean',
       })
       .help().argv;
@@ -67,11 +74,13 @@ export async function publish(yargs) {
     });
   }
 
-  execFromRoot({
-    cmd: 'npx',
-    args: ['turbo', 'run', '--continue', 'build', filterArg],
-    stdio: 'inherit',
-  });
+  if (!skipBuild) {
+    execFromRoot({
+      cmd: 'npx',
+      args: ['turbo', 'run', '--continue', 'build', filterArg],
+      stdio: 'inherit',
+    });
+  }
 
   const turboToolsCustomConfig = readTurboToolsConfig();
   const customPublishCmd = turboToolsCustomConfig?.publish?.getCommand?.({
@@ -100,7 +109,9 @@ export async function publish(yargs) {
   const changedPostBumpPackages = (await findPackages()).filter(p => changedPreBumpLookup.has(p.name));
 
   // rebuild all, again, from root, just to be safe
-  execFromRoot({ args: ['turbo', 'run', 'build', filterArg], cmd: 'npx', stdio: 'inherit' });
+  if (!skipBuild) {
+    execFromRoot({ args: ['turbo', 'run', 'build', filterArg], cmd: 'npx', stdio: 'inherit' });
+  }
 
   const publishSuccessMap = {};
   const publishFailureMap = {};
