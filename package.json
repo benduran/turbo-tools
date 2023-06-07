@@ -32,6 +32,7 @@
     "lint:fix": "npm run lint -- --fix",
     "start": "node src/cli.js",
     "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
     "test:watch": "vitest",
     "typecheck": "tsc --project ./tsconfig.json",
     "typecheck:staged": "tsc --noEmit --allowJs --skipLibCheck"
@@ -45,7 +46,7 @@
     "type-fest": "^3.11.0"
   },
   "dependencies": {
-    "@better-builds/lets-version": "^0.1.2-beta.7",
+    "@better-builds/lets-version": "^0.2.0",
     "@commitlint/cli": "^17.6.3",
     "@commitlint/config-conventional": "^17.6.3",
     "@npmcli/map-workspaces": "^3.0.4",
