@@ -61,6 +61,12 @@ export async function publish(yargs) {
   const filterArg =
     bumpInfos.bumps.length > 0 ? bumpInfos.bumps.map(b => `--filter="${b.packageInfo.name}"`).join(' ') : '';
 
+  if (!filterArg) {
+    return console.warn(
+      'turbo-tools publish is exiting because no packages were found to have been directly changed that need publishing',
+    );
+  }
+
   const turboExists = await guardTurboExists();
   if (!turboExists) process.exit(1);
 
