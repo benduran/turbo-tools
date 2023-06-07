@@ -1,3 +1,11 @@
+## 3.3.0 (2023-06-07)
+
+### ✨ Features ✨
+
+* bumped lets-version, now that it is marked as stable (225a9f45feccad52c0035af10da2b583013ee856)
+
+---
+
 ## 3.2.2-beta.9 (2023-06-07)
 
 ### ✨ Features ✨
