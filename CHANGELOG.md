@@ -1,3 +1,11 @@
+## 3.3.1 (2023-06-07)
+
+### 🛠️ Fixes 🛠️
+
+* fixed publishing if filter arg is empty (221aba33166d00c55d9026bf8d935fbe167b9da2)
+
+---
+
 ## 3.3.0 (2023-06-07)
 
 ### ✨ Features ✨
