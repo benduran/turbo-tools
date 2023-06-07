@@ -1,3 +1,11 @@
+## 3.2.2-beta.9 (2023-06-07)
+
+### ✨ Features ✨
+
+* added support for the uniqify flag (18c08472e83ad9d3db88222b8ea01cadee0087d5)
+
+---
+
 ## 3.2.2-beta.8 (2023-06-02)
 
 ### 🔀 Miscellaneous 🔀
