@@ -21,7 +21,7 @@ import {
  * @param {Argv} yargs
  */
 export async function publish(yargs) {
-  const { all, dryRun, noFetchAll, noFetchTags, releaseAs, skipBuild, skipLint, skipTest, yes } =
+  const { all, dryRun, noFetchAll, noFetchTags, releaseAs, skipBuild, skipLint, skipTest, uniqify, yes } =
     await getVersionAndPublishBaseYargs(yargs)
       .option('skipBuild', {
         default: false,
@@ -49,6 +49,7 @@ export async function publish(yargs) {
     undefined,
     releaseAs,
     undefined,
+    uniqify,
     all,
     noFetchTags,
     undefined,
@@ -101,6 +102,7 @@ export async function publish(yargs) {
     forceTags: !noFetchTags,
     noFetchAll,
     releaseAs,
+    uniqify,
     willPublish: true,
     yes,
   });

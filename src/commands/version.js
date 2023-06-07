@@ -9,8 +9,9 @@ import { getVersionAndPublishBaseYargs, versionWithLetsVersion } from '../util/i
  * @param {Argv} yargs
  */
 export async function version(yargs) {
-  const { all, dryRun, noFetchAll, noFetchTags, releaseAs, yes } = await getVersionAndPublishBaseYargs(yargs).help()
-    .argv;
+  const { all, dryRun, noFetchAll, noFetchTags, releaseAs, uniqify, yes } = await getVersionAndPublishBaseYargs(
+    yargs,
+  ).help().argv;
 
   const success = await versionWithLetsVersion({
     all,
@@ -18,6 +19,7 @@ export async function version(yargs) {
     forceTags: !noFetchTags,
     noFetchAll,
     releaseAs,
+    uniqify,
     willPublish: false,
     yes,
   });

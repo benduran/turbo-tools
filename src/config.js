@@ -32,6 +32,16 @@ import path from 'path';
  */
 
 /**
+ * @typedef {Object} CheckCanPublishOpts
+ * @property {boolean} [all=false]
+ * @property {boolean} [dryRun=false]
+ * @property {string} packagePath
+ * @property {'alpha' | 'beta' | ''} [publishTag='']
+ * @property {string} [releaseAs]
+ * @property {boolean} [yes=false]
+ */
+
+/**
  *
  * Given a series of arguments provided to the Turbo Tools,
  * expects you to return an async true or false for whether or

@@ -18,6 +18,7 @@ export function determinePublishTag(releaseAs) {
  * @property {'major' | 'minor' | 'patch' | 'alpha' | 'beta' | string} [releaseAs]
  * @property {boolean} willPublish
  * @property {boolean} yes
+ * @property {boolean} uniqify
  */
 
 /**
@@ -28,6 +29,7 @@ export async function versionWithLetsVersion(opts) {
     undefined,
     opts.releaseAs,
     undefined,
+    opts.uniqify,
     opts.all,
     opts.noFetchAll,
     opts.forceTags,

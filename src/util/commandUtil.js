@@ -40,6 +40,12 @@ export function getVersionAndPublishBaseYargs(yargs) {
         'Releases each changed package as this release type or as an exact version. "major" "minor" "patch" "alpha" "beta" or an exact semver version number are allowed.',
       type: 'string',
     })
+    .option('uniqify', {
+      default: false,
+      description:
+        'If true, will append the git SHA at version bunp time to the end of the version number (while maintaining valid semver)',
+      type: 'boolean',
+    })
     .option('yes', {
       alias: 'y',
       default: false,
