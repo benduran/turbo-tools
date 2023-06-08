@@ -67,7 +67,7 @@ export async function publish(yargs) {
     );
   }
 
-  const turboExists = await guardTurboExists();
+  const turboExists = guardTurboExists();
   if (!turboExists) process.exit(1);
 
   if (!skipLint) {

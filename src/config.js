@@ -2,6 +2,7 @@
  * @typedef {import('type-fest').PackageJson} PackageJson
  */
 import fs from 'fs-extra';
+import { createRequire } from 'module';
 import path from 'path';
 
 /**
@@ -136,10 +137,9 @@ export function readTurboToolsConfig() {
 
   for (const dir of getAllFoldersUpToRoot()) {
     const turboConfigPath = getTurboToolsConfigFilePath(dir);
-    try {
-      const stat = fs.statSync(turboConfigPath);
-      if (stat.isFile()) return require(turboConfigPath);
-    } catch (error) {}
+    const isFile = fs.statSync(turboConfigPath, { throwIfNoEntry: false })?.isFile() || false;
+    const require = createRequire(import.meta.url);
+    if (isFile) return require(turboConfigPath);
   }
 
   return null;
