@@ -1,3 +1,11 @@
+## 3.3.2 (2023-06-07)
+
+### 🛠️ Fixes 🛠️
+
+* fixed custom config not loading (779dbbdb27e1c5483f9a822092c88c90da01d934)
+
+---
+
 ## 3.3.1 (2023-06-07)
 
 ### 🛠️ Fixes 🛠️
