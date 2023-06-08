@@ -1,3 +1,11 @@
+## 4.0.0 (2023-06-07)
+
+### 🚨 Breaking Changes 🚨
+
+* updated turboTools config import to be MJS-only (e9275c43f29223153256d13b510082a49dd00713)
+
+---
+
 ## 3.3.2 (2023-06-07)
 
 ### 🛠️ Fixes 🛠️
