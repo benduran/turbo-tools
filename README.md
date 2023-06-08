@@ -41,7 +41,7 @@ Commands:
                        monorepo
   turbo-tools publish  Publishes packages in a Turborepo-powered Monorepo, and
                        optionally uses whichever custom Publish command you may
-                       need (if overwritten in turboTools.config.js)
+                       need (if overwritten in turboTools.config.mjs)
   turbo-tools run      Pass-through to Turborepo's run command
   turbo-tools init     Initializes a sane default configuration of config files
                        to work with the turbo-tools
@@ -135,12 +135,12 @@ Options:
 
 ## customizing behaviors
 
-There are many cases where you might want to use Turbo Tools at your enterprise software organization, and might not be publishing packages to the public NPM registry. As such, you can customize which publish command is used for your use case, override guards for publishing, or merge additional contents into `package.json` files when you initialize your repository to work with Turbo and Turbo Tools. These can all be customized by placing a `turboTools.config.js` file at the root of your repository. To get typing and IDE assistance for this config, you can use the provided pass-through `defineConfig` function (see below). Not all of the options are required!
+There are many cases where you might want to use Turbo Tools at your enterprise software organization, and might not be publishing packages to the public NPM registry. As such, you can customize which publish command is used for your use case, override guards for publishing, or merge additional contents into `package.json` files when you initialize your repository to work with Turbo and Turbo Tools. These can all be customized by placing a `turboTools.config.mjs` (**Note the `.mjs` extension**) file at the root of your repository. To get typing and IDE assistance for this config, you can use the provided pass-through `defineConfig` function (see below). Not all of the options are required!
 
 ```javascript
-const { defineTurboToolsConfig } = require('@better-builds/turbo-tools');
+import { defineTurboToolsConfig } from '@better-builds/turbo-tools';
 
-module.exports = defineTurboConfig({
+export default defineTurboConfig({
   init: {
     // Will be called for every child package that exists in the monorepo when "init" is called.
     // You can completely customize the contents and they will be merged in with Turbo Tools' defaults

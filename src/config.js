@@ -2,7 +2,6 @@
  * @typedef {import('type-fest').PackageJson} PackageJson
  */
 import fs from 'fs-extra';
-import { createRequire } from 'module';
 import path from 'path';
 
 /**
@@ -123,23 +122,25 @@ function getAllFoldersUpToRoot() {
  * Attempts to read the nearest turboTools.config.js file (if it exists)
  * and returns its contents
  *
- * @returns {TurboToolsConfig | null}
+ * @returns {Promise<TurboToolsConfig | null>}
  */
-export function readTurboToolsConfig() {
+export async function readTurboToolsConfig() {
   /**
    * @param {string} prefix
    * @returns {string}
    */
   const getTurboToolsConfigFilePath = prefix => {
-    if (prefix.endsWith(path.sep)) return `${prefix}turboTools.config.js`;
-    return `${prefix}${path.sep}turboTools.config.js`;
+    if (prefix.endsWith(path.sep)) return `${prefix}turboTools.config.mjs`;
+    return `${prefix}${path.sep}turboTools.config.mjs`;
   };
 
   for (const dir of getAllFoldersUpToRoot()) {
     const turboConfigPath = getTurboToolsConfigFilePath(dir);
     const isFile = fs.statSync(turboConfigPath, { throwIfNoEntry: false })?.isFile() || false;
-    const require = createRequire(import.meta.url);
-    if (isFile) return require(turboConfigPath);
+    if (isFile) {
+      const result = await import(turboConfigPath);
+      return result.default;
+    }
   }
 
   return null;

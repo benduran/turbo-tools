@@ -73,7 +73,7 @@ export async function init(yargs) {
       }),
     );
 
-    const turboToolsCustomConfig = readTurboToolsConfig();
+    const turboToolsCustomConfig = await readTurboToolsConfig();
     const publishSnippetToAdd =
       turboToolsCustomConfig?.init?.addToPackageJson?.({
         monorepoRoot,

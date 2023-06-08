@@ -90,7 +90,7 @@ export async function publish(yargs) {
     });
   }
 
-  const turboToolsCustomConfig = readTurboToolsConfig();
+  const turboToolsCustomConfig = await readTurboToolsConfig();
   const customPublishCmd = turboToolsCustomConfig?.publish?.getCommand?.({
     all,
     dryRun,
