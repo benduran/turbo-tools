@@ -1,3 +1,11 @@
+## 4.1.0 (2023-06-09)
+
+### 🔀 Miscellaneous 🔀
+
+* bumped deps (b3481a2d6b08519ad3ac3ab09f877b3bbd0c6e95)
+
+---
+
 ## 4.0.1-beta.1 (2023-06-09)
 
 ### 🔀 Miscellaneous 🔀
