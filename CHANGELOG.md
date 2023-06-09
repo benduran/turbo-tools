@@ -1,3 +1,11 @@
+## 4.0.1-beta.0 (2023-06-09)
+
+### 🔀 Miscellaneous 🔀
+
+* bumped deps to fix version bug (7939b7120a9fd0cd133efb0c44094b938f903325)
+
+---
+
 ## 4.0.0 (2023-06-07)
 
 ### 🚨 Breaking Changes 🚨
