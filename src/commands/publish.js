@@ -111,6 +111,7 @@ export async function publish(yargs) {
     uniqify,
     willPublish: true,
     yes,
+    changelogLineFormatter: turboToolsCustomConfig?.version?.changelogLineFormatter,
   });
 
   if (!success) return console.info('Version bumps were aborted');

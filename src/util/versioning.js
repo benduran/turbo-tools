@@ -1,3 +1,7 @@
+/**
+ * @typedef {import('@better-builds/lets-version').ChangeLogLineFormatter} ChangeLogLineFormatter
+ */
+
 import { applyRecommendedBumpsByPackage } from '@better-builds/lets-version';
 
 /**
@@ -19,6 +23,7 @@ export function determinePublishTag(releaseAs) {
  * @property {boolean} willPublish
  * @property {boolean} yes
  * @property {boolean} uniqify
+ * @property {ChangeLogLineFormatter=} changelogLineFormatter
  */
 
 /**
@@ -36,6 +41,7 @@ export async function versionWithLetsVersion(opts) {
     {
       yes: opts.yes,
       dryRun: opts.dryRun,
+      changelogLineFormatter: opts.changelogLineFormatter,
     },
   );
 
