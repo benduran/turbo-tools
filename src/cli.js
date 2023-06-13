@@ -1,14 +1,24 @@
 #!/usr/bin/env node
 
+import fs from 'fs-extra';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import setupYargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 
 import { init, list, publish, run, version } from './commands/index.js';
 
 export async function monorepoToolsCLI() {
+  const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+  const { version: turboToolsVersion } = JSON.parse(
+    await fs.readFile(path.join(__dirname, '../package.json'), 'utf-8'),
+  );
+
   const yargs = setupYargs(hideBin(process.argv));
   const argv = await yargs
     .scriptName('turbo-tools')
+    .version(turboToolsVersion)
     .command('version', 'Skips publishing and just version bumps packages in your monorepo', version)
     .command(
       'publish',
