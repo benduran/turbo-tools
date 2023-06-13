@@ -1,3 +1,18 @@
+## 4.2.0 (2023-06-13)
+
+### 🔀 Miscellaneous 🔀
+
+- bumped deps and added printing of turbo-tools version (a41440b4b6795a3d801f5178b44637c61fed8de1)
+- Merge pull request #8 from jgodi/main (6433ad17c4682f63b625d48e19a54b8587fa8888)
+
+
+
+### ✨ Features ✨
+
+- adding a version config to pass a custom changelog line formatter (b589166a2d74b9eab0218e8d0757bae2410f6a9f)
+
+---
+
 ## 4.1.0 (2023-06-09)
 
 ### 🔀 Miscellaneous 🔀
