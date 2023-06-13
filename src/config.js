@@ -1,6 +1,8 @@
 /**
  * @typedef {import('type-fest').PackageJson} PackageJson
+ * @typedef {import('@better-builds/lets-version').ChangeLogLineFormatter} ChangeLogLineFormatter
  */
+
 import fs from 'fs-extra';
 import path from 'path';
 
@@ -55,7 +57,7 @@ import path from 'path';
  */
 
 /**
- * @typedef GetCommanReturnType
+ * @typedef GetCommandReturnType
  * @property {string[]} args
  * @property {string} cmd
  */
@@ -73,7 +75,7 @@ import path from 'path';
  * @callback GetCommand
  * @param {CustomFncOpts} opts
  *
- * @returns {GetCommanReturnType}
+ * @returns {GetCommandReturnType}
  */
 
 /**
@@ -89,12 +91,19 @@ import path from 'path';
  */
 
 /**
+ * @typedef {Object} TurboToolVersionConfig
+ * @property {ChangeLogLineFormatter} changelogLineFormatter
+ */
+
+/**
  * @typedef {Object} TurboToolsConfig
  *
  *
  * @property {TurboToolsInitConfig} init
  *
  * @property {TurboToolsPublishConfig} publish
+ *
+ * @property {TurboToolVersionConfig} version
  */
 
 /**
