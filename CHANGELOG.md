@@ -1,3 +1,11 @@
+## 4.2.1-beta.0 (2023-06-14)
+
+### 🚨 Breaking Changes 🚨
+
+- migrated to beta version of lets-version that allows for custom config (07e43d2202c8d4416a28cba0e1e763a6c7f5ef9d)
+
+---
+
 ## 4.2.0 (2023-06-13)
 
 ### 🔀 Miscellaneous 🔀
