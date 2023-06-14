@@ -1,3 +1,11 @@
+## 4.2.1-beta.1 (2023-06-14)
+
+### ✨ Features ✨
+
+- added additional rollup passthrough arg (7cc9178ab20e9904f9fdb86fc55a3a44e58ec7c3)
+
+---
+
 ## 4.2.1-beta.0 (2023-06-14)
 
 ### 🚨 Breaking Changes 🚨
