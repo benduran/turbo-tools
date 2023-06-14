@@ -1,5 +1,6 @@
 /**
  * @typedef {import('@better-builds/lets-version').ChangeLogLineFormatter} ChangeLogLineFormatter
+ * @typedef {import('../config.js').TurboToolsConfig} TurboToolsConfig
  */
 
 import { applyRecommendedBumpsByPackage } from '@better-builds/lets-version';
@@ -16,34 +17,30 @@ export function determinePublishTag(releaseAs) {
 /**
  * @typedef {Object} VersionOpts
  * @property {boolean} all
+ * @property {TurboToolsConfig | null} [customConfig]
  * @property {boolean} dryRun
  * @property {boolean} noFetchAll
- * @property {boolean} forceTags
+ * @property {boolean} noFetchTags
  * @property {'major' | 'minor' | 'patch' | 'alpha' | 'beta' | string} [releaseAs]
- * @property {boolean} willPublish
  * @property {boolean} yes
  * @property {boolean} uniqify
- * @property {ChangeLogLineFormatter=} changelogLineFormatter
  */
 
 /**
  * @param {VersionOpts} opts
  */
 export async function versionWithLetsVersion(opts) {
-  const result = await applyRecommendedBumpsByPackage(
-    undefined,
-    opts.releaseAs,
-    undefined,
-    opts.uniqify,
-    opts.all,
-    opts.noFetchAll,
-    opts.forceTags,
-    {
-      yes: opts.yes,
-      dryRun: opts.dryRun,
-      changelogLineFormatter: opts.changelogLineFormatter,
-    },
-  );
+  const { all, customConfig, dryRun, noFetchAll, releaseAs, uniqify, yes } = opts;
+
+  const result = await applyRecommendedBumpsByPackage({
+    customConfig: customConfig?.letsVersion,
+    dryRun,
+    noFetchAll,
+    forceAll: all,
+    releaseAs,
+    uniqify,
+    yes,
+  });
 
   return Boolean(result?.bumps.length);
 }

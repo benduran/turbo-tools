@@ -45,16 +45,12 @@ export async function publish(yargs) {
 
   const publishTag = determinePublishTag(releaseAs);
 
-  const bumpInfos = await getRecommendedBumpsByPackage(
-    undefined,
-    releaseAs,
-    undefined,
-    uniqify,
-    all,
+  const bumpInfos = await getRecommendedBumpsByPackage({
+    forceAll: all,
     noFetchTags,
-    undefined,
-    undefined,
-  );
+    releaseAs,
+    uniqify,
+  });
 
   const changedPreBumpLookup = new Set(bumpInfos.bumps.map(b => b.packageInfo.name));
 
@@ -104,14 +100,13 @@ export async function publish(yargs) {
 
   const success = await versionWithLetsVersion({
     all,
+    customConfig: turboToolsCustomConfig,
     dryRun,
-    forceTags: !noFetchTags,
     noFetchAll,
+    noFetchTags,
     releaseAs,
     uniqify,
-    willPublish: true,
     yes,
-    changelogLineFormatter: turboToolsCustomConfig?.version?.changelogLineFormatter,
   });
 
   if (!success) return console.info('Version bumps were aborted');

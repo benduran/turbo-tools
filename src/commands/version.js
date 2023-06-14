@@ -16,11 +16,10 @@ export async function version(yargs) {
   const success = await versionWithLetsVersion({
     all,
     dryRun,
-    forceTags: !noFetchTags,
     noFetchAll,
+    noFetchTags,
     releaseAs,
     uniqify,
-    willPublish: false,
     yes,
   });
 

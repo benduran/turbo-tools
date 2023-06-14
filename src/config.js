@@ -1,6 +1,6 @@
 /**
  * @typedef {import('type-fest').PackageJson} PackageJson
- * @typedef {import('@better-builds/lets-version').ChangeLogLineFormatter} ChangeLogLineFormatter
+ * @typedef {import('@better-builds/lets-version').LetsVersionConfig} LetsVersionConfig
  */
 
 import fs from 'fs-extra';
@@ -81,29 +81,21 @@ import path from 'path';
 /**
  * @typedef {Object} TurboToolsInitConfig
  *
- * @property {AddToPackageJson} addToPackageJson
+ * @property {AddToPackageJson} [addToPackageJson]
  */
 
 /**
  * @typedef {Object} TurboToolsPublishConfig
- * @property {GetCommand} getCommand
- * @property {CheckCanPublish} checkCanPublish
- */
-
-/**
- * @typedef {Object} TurboToolVersionConfig
- * @property {ChangeLogLineFormatter} changelogLineFormatter
+ * @property {GetCommand} [getCommand]
+ * @property {CheckCanPublish} [checkCanPublish]
  */
 
 /**
  * @typedef {Object} TurboToolsConfig
  *
- *
- * @property {TurboToolsInitConfig} init
- *
- * @property {TurboToolsPublishConfig} publish
- *
- * @property {TurboToolVersionConfig} version
+ * @property {TurboToolsInitConfig} [init]
+ * @property {TurboToolsPublishConfig} [publish]
+ * @property {LetsVersionConfig} [letsVersion]
  */
 
 /**

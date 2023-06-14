@@ -46,7 +46,7 @@
     "type-fest": "^3.11.1"
   },
   "dependencies": {
-    "@better-builds/lets-version": "^0.4.0",
+    "@better-builds/lets-version": "^0.4.1-beta.2",
     "@commitlint/cli": "^17.6.5",
     "@commitlint/config-conventional": "^17.6.5",
     "@npmcli/map-workspaces": "^3.0.4",
