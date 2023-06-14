@@ -40,6 +40,12 @@ export function getVersionAndPublishBaseYargs(yargs) {
         'Releases each changed package as this release type or as an exact version. "major" "minor" "patch" "alpha" "beta" or an exact semver version number are allowed.',
       type: 'string',
     })
+    .option('rollupChangelog', {
+      default: false,
+      description:
+        'If true, in addition to updating changelog files for all packages that will be bumped, creates a "rollup" CHANGELOG.md at the root of the repo that contains an aggregate of changes',
+      type: 'boolean',
+    })
     .option('uniqify', {
       default: false,
       description:

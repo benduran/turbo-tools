@@ -22,6 +22,7 @@ export function determinePublishTag(releaseAs) {
  * @property {boolean} noFetchAll
  * @property {boolean} noFetchTags
  * @property {'major' | 'minor' | 'patch' | 'alpha' | 'beta' | string} [releaseAs]
+ * @property {boolean} [rollupChangelog=false]
  * @property {boolean} yes
  * @property {boolean} uniqify
  */
@@ -30,7 +31,7 @@ export function determinePublishTag(releaseAs) {
  * @param {VersionOpts} opts
  */
 export async function versionWithLetsVersion(opts) {
-  const { all, customConfig, dryRun, noFetchAll, releaseAs, uniqify, yes } = opts;
+  const { all, customConfig, dryRun, noFetchAll, releaseAs, rollupChangelog, uniqify, yes } = opts;
 
   const result = await applyRecommendedBumpsByPackage({
     customConfig: customConfig?.letsVersion,
@@ -38,6 +39,7 @@ export async function versionWithLetsVersion(opts) {
     noFetchAll,
     forceAll: all,
     releaseAs,
+    rollupChangelog,
     uniqify,
     yes,
   });
