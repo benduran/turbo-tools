@@ -1,3 +1,11 @@
+## 4.2.1-beta.2 (2023-06-15)
+
+### 🔀 Miscellaneous 🔀
+
+- adderssed PR feedback (ed3709048b786cc6817ee82c5d6699c935f6c4f2)
+
+---
+
 ## 4.2.1-beta.1 (2023-06-14)
 
 ### ✨ Features ✨
