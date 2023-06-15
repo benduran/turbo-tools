@@ -34,7 +34,7 @@ export async function versionWithLetsVersion(opts) {
   const { all, customConfig, dryRun, noFetchAll, releaseAs, rollupChangelog, uniqify, yes } = opts;
 
   const result = await applyRecommendedBumpsByPackage({
-    customConfig: customConfig?.letsVersion,
+    customConfig: customConfig?.version,
     dryRun,
     noFetchAll,
     forceAll: all,

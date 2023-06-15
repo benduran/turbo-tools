@@ -95,7 +95,7 @@ import path from 'path';
  *
  * @property {TurboToolsInitConfig} [init]
  * @property {TurboToolsPublishConfig} [publish]
- * @property {LetsVersionConfig} [letsVersion]
+ * @property {LetsVersionConfig} [version]
  */
 
 /**
