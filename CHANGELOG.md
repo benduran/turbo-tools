@@ -1,3 +1,11 @@
+## 4.2.1 (2023-06-16)
+
+### 🔀 Miscellaneous 🔀
+
+- bumped lets-version (52cb5b9c1520ced8cce8774126bcd4f65ac94d20)
+
+---
+
 ## 4.2.0 (2023-06-13)
 
 ### 🔀 Miscellaneous 🔀
