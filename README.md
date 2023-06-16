@@ -171,6 +171,12 @@ export default defineTurboConfig({
       return { args, cmd };
     },
   },
+  version: {
+    // accepts all the same configuration options supported by the @better-builds/lets-version library.
+    // https://github.com/benduran/lets-version#advanced-configuration
+    changelog: {
+    },
+  },
 });
 ```
 
