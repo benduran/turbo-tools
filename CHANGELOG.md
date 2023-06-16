@@ -1,3 +1,11 @@
+## 4.2.1-beta.3 (2023-06-15)
+
+### 🛠️ Fixes 🛠️
+
+- upgraded to latest lets-version beta to fix critical bugs (d8e8c7303e257cfb205ac5ff140cb877a8392188)
+
+---
+
 ## 4.2.1-beta.2 (2023-06-15)
 
 ### 🔀 Miscellaneous 🔀
