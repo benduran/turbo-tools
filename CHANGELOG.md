@@ -3,6 +3,35 @@
 ### 🔀 Miscellaneous 🔀
 
 - bumped lets-version (52cb5b9c1520ced8cce8774126bcd4f65ac94d20)
+## 4.2.1-beta.3 (2023-06-15)
+
+### 🛠️ Fixes 🛠️
+
+- upgraded to latest lets-version beta to fix critical bugs (d8e8c7303e257cfb205ac5ff140cb877a8392188)
+
+---
+
+## 4.2.1-beta.2 (2023-06-15)
+
+### 🔀 Miscellaneous 🔀
+
+- adderssed PR feedback (ed3709048b786cc6817ee82c5d6699c935f6c4f2)
+
+---
+
+## 4.2.1-beta.1 (2023-06-14)
+
+### ✨ Features ✨
+
+- added additional rollup passthrough arg (7cc9178ab20e9904f9fdb86fc55a3a44e58ec7c3)
+
+---
+
+## 4.2.1-beta.0 (2023-06-14)
+
+### 🚨 Breaking Changes 🚨
+
+- migrated to beta version of lets-version that allows for custom config (07e43d2202c8d4416a28cba0e1e763a6c7f5ef9d)
 
 ---
 
@@ -194,7 +223,7 @@
 
 ### 🔀 Miscellaneous 🔀
 
-* Version bump forced for all 
+* Version bump forced for all
 
 ---
 
