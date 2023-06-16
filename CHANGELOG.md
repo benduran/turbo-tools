@@ -1,3 +1,41 @@
+## 5.0.0 (2023-06-16)
+
+### 📖 Docs 📖
+
+- updated readme (5ae283fd8c90e0541809bdd81af5545bf92b52d8)
+
+
+
+### 🔀 Miscellaneous 🔀
+
+- regenerated lockfile (fc094cd6ada958fae02650afaa80a3a6a66ffc29)
+- updated to latest lets-version release (fea0bb3295e99d25a236af3878eb7ae7d5f572e0)
+- Version Bump (1a96035a13dc486001b76dd1d438c875eab170e4)
+- Version Bump (79759b7e22e3ba88b137374ac0a45a0e76469425)
+- adderssed PR feedback (ed3709048b786cc6817ee82c5d6699c935f6c4f2)
+- Version Bump (8ff08b3b20802c75ca91cb72b8cbc7d31b735c61)
+- Version Bump (800cfb7efa8852edf72b924775ce6a73aa236a03)
+
+
+
+### 🛠️ Fixes 🛠️
+
+- upgraded to latest lets-version beta to fix critical bugs (d8e8c7303e257cfb205ac5ff140cb877a8392188)
+
+
+
+### ✨ Features ✨
+
+- added additional rollup passthrough arg (7cc9178ab20e9904f9fdb86fc55a3a44e58ec7c3)
+
+
+
+### 🚨 Breaking Changes 🚨
+
+- migrated to beta version of lets-version that allows for custom config (07e43d2202c8d4416a28cba0e1e763a6c7f5ef9d)
+
+---
+
 ## 4.2.1 (2023-06-16)
 
 ### 🔀 Miscellaneous 🔀
