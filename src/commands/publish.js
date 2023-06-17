@@ -32,6 +32,8 @@ export async function publish(yargs) {
     skipLint,
     skipTest,
     uniqify,
+    updateOptional,
+    updatePeer,
     yes,
   } = await getVersionAndPublishBaseYargs(yargs)
     .option('skipBuild', {
@@ -60,6 +62,8 @@ export async function publish(yargs) {
     forceAll: all,
     noFetchTags,
     releaseAs,
+    updateOptional,
+    updatePeer,
     uniqify,
   });
 
@@ -118,6 +122,8 @@ export async function publish(yargs) {
     releaseAs,
     rollupChangelog,
     uniqify,
+    updateOptional,
+    updatePeer,
     yes,
   });
 

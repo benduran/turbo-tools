@@ -35,6 +35,16 @@ export function getVersionAndPublishBaseYargs(yargs) {
         'If true, does not force fetch tags from origin. By default, lets-version will do "git fetch origin --tags --force" to ensure your branch if up-to-date with the tags on origin',
       type: 'boolean',
     })
+    .option('updatePeer', {
+      default: false,
+      description: 'If true, will update any dependent "package.json#peerDependencies" fields',
+      type: 'boolean',
+    })
+    .option('updateOptional', {
+      default: false,
+      description: 'If true, will update any dependent "package.json#optionalDependencies" fields',
+      type: 'boolean',
+    })
     .option('releaseAs', {
       description:
         'Releases each changed package as this release type or as an exact version. "major" "minor" "patch" "alpha" "beta" or an exact semver version number are allowed.',

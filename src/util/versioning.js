@@ -25,13 +25,26 @@ export function determinePublishTag(releaseAs) {
  * @property {boolean} [rollupChangelog=false]
  * @property {boolean} yes
  * @property {boolean} uniqify
+ * @property {boolean} updateOptional
+ * @property {boolean} updatePeer
  */
 
 /**
  * @param {VersionOpts} opts
  */
 export async function versionWithLetsVersion(opts) {
-  const { all, customConfig, dryRun, noFetchAll, releaseAs, rollupChangelog, uniqify, yes } = opts;
+  const {
+    all,
+    customConfig,
+    dryRun,
+    noFetchAll,
+    releaseAs,
+    rollupChangelog,
+    uniqify,
+    updateOptional,
+    updatePeer,
+    yes,
+  } = opts;
 
   const result = await applyRecommendedBumpsByPackage({
     customConfig: customConfig?.version,
@@ -41,6 +54,8 @@ export async function versionWithLetsVersion(opts) {
     releaseAs,
     rollupChangelog,
     uniqify,
+    updateOptional,
+    updatePeer,
     yes,
   });
 
