@@ -1,3 +1,17 @@
+## 5.1.0 (2023-06-16)
+
+### ✨ Features ✨
+
+- added pass-through update peer and update optional (4b65bc62eb1d631990fdcd2de2b7f75adb47172e)
+
+
+
+### 🔀 Miscellaneous 🔀
+
+- upgraded lets version (b677e42e7b93f7eae89687a951537a0e089401da)
+
+---
+
 ## 5.0.0 (2023-06-16)
 
 ### 📖 Docs 📖
