@@ -1,3 +1,11 @@
+## 5.2.0 (2023-06-20)
+
+### ✨ Features ✨
+
+- allow for publishing when there are uncommitted changes (3f5dc4635734c0ed701267858c6ca2f05972624e)
+
+---
+
 ## 5.1.0 (2023-06-16)
 
 ### ✨ Features ✨
