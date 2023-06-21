@@ -9,11 +9,23 @@ import { getVersionAndPublishBaseYargs, versionWithLetsVersion } from '../util/i
  * @param {Argv} yargs
  */
 export async function version(yargs) {
-  const { all, dryRun, noFetchAll, noFetchTags, releaseAs, rollupChangelog, uniqify, updateOptional, updatePeer, yes } =
-    await getVersionAndPublishBaseYargs(yargs).help().argv;
+  const {
+    all,
+    allowUncommitted,
+    dryRun,
+    noFetchAll,
+    noFetchTags,
+    releaseAs,
+    rollupChangelog,
+    uniqify,
+    updateOptional,
+    updatePeer,
+    yes,
+  } = await getVersionAndPublishBaseYargs(yargs).help().argv;
 
   const success = await versionWithLetsVersion({
     all,
+    allowUncommitted,
     dryRun,
     noFetchAll,
     noFetchTags,

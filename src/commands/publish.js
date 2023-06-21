@@ -23,6 +23,7 @@ import {
 export async function publish(yargs) {
   const {
     all,
+    allowUncommitted,
     dryRun,
     noFetchAll,
     noFetchTags,
@@ -115,6 +116,7 @@ export async function publish(yargs) {
 
   const success = await versionWithLetsVersion({
     all,
+    allowUncommitted,
     customConfig: turboToolsCustomConfig,
     dryRun,
     noFetchAll,

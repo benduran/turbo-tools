@@ -17,6 +17,12 @@ export function getVersionAndPublishBaseYargs(yargs) {
         'If true, dirties all monorepo packages and thus, forces them all to be version bumped and published',
       type: 'boolean',
     })
+    .option('allowUncommitted', {
+      default: false,
+      description:
+        'If true, will allow the version operation to continue when there are uncommitted files in the repo at version bump time. This is usefull if you have some scripts that need to run after version bumps are performed, but potentially before you issue a git commit and subsequent npm publish operation.',
+      type: 'boolean',
+    })
     .option('dryRun', {
       alias: 'd',
       default: false,

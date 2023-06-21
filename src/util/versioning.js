@@ -17,6 +17,7 @@ export function determinePublishTag(releaseAs) {
 /**
  * @typedef {Object} VersionOpts
  * @property {boolean} all
+ * @property {boolean} allowUncommitted
  * @property {TurboToolsConfig | null} [customConfig]
  * @property {boolean} dryRun
  * @property {boolean} noFetchAll
@@ -35,6 +36,7 @@ export function determinePublishTag(releaseAs) {
 export async function versionWithLetsVersion(opts) {
   const {
     all,
+    allowUncommitted,
     customConfig,
     dryRun,
     noFetchAll,
@@ -47,6 +49,7 @@ export async function versionWithLetsVersion(opts) {
   } = opts;
 
   const result = await applyRecommendedBumpsByPackage({
+    allowUncommitted,
     customConfig: customConfig?.version,
     dryRun,
     noFetchAll,
