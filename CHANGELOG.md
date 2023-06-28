@@ -1,3 +1,11 @@
+## 5.2.1-beta.1 (2023-06-28)
+
+### 🛠️ Fixes 🛠️
+
+- latest lets-version beta (f21e7b3b79e3b79eb58f383a7d266e72ebb8c221)
+
+---
+
 ## 5.2.1-beta.0 (2023-06-28)
 
 ### ✨ Features ✨
