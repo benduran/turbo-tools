@@ -1,3 +1,11 @@
+## 5.2.1 (2023-06-30)
+
+### 🔀 Miscellaneous 🔀
+
+- upgraded lets-version (4ed7200683ab6dbef4845991b0199929f8d23bfb)
+
+---
+
 ## 5.2.0 (2023-06-20)
 
 ### ✨ Features ✨
