@@ -1,3 +1,12 @@
+## 5.2.2-beta.0 (2023-07-20)
+
+### 🔀 Miscellaneous 🔀
+
+- Merge pull request #11 from jgodi/main (f9e4612b3fdbb8fa67b43ec796193e67a7bb132e)
+- fix(version, publish): allow for passing of --noPush and --noChangelog to lets-version (4dd897c05f4d1ed558469cec1b76cf311a8ce465)
+
+---
+
 ## 5.2.1 (2023-06-30)
 
 ### 🔀 Miscellaneous 🔀
