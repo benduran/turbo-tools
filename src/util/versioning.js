@@ -20,8 +20,10 @@ export function determinePublishTag(releaseAs) {
  * @property {boolean} allowUncommitted
  * @property {TurboToolsConfig | null} [customConfig]
  * @property {boolean} dryRun
+ * @property {boolean} noChangelog
  * @property {boolean} noFetchAll
  * @property {boolean} noFetchTags
+ * @property {boolean} noPush
  * @property {'major' | 'minor' | 'patch' | 'alpha' | 'beta' | string} [releaseAs]
  * @property {boolean} [rollupChangelog=false]
  * @property {boolean} yes
@@ -39,7 +41,9 @@ export async function versionWithLetsVersion(opts) {
     allowUncommitted,
     customConfig,
     dryRun,
+    noChangelog,
     noFetchAll,
+    noPush,
     releaseAs,
     rollupChangelog,
     uniqify,
@@ -52,7 +56,9 @@ export async function versionWithLetsVersion(opts) {
     allowUncommitted,
     customConfig: customConfig?.version,
     dryRun,
+    noChangelog,
     noFetchAll,
+    noPush,
     forceAll: all,
     releaseAs,
     rollupChangelog,

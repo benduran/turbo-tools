@@ -30,6 +30,11 @@ export function getVersionAndPublishBaseYargs(yargs) {
         'If true, will perform all steps right up until publish, and then output what would happen if publish were to continue',
       type: 'boolean',
     })
+    .option('noChangelog', {
+      default: false,
+      description: 'If true, will not write CHANGELOG.md updates for each package that has changed',
+      type: 'boolean',
+    })
     .option('noFetchAll', {
       default: false,
       description: 'If true, will not fetch information from remote via "git fetch origin"',
@@ -39,6 +44,11 @@ export function getVersionAndPublishBaseYargs(yargs) {
       default: false,
       description:
         'If true, does not force fetch tags from origin. By default, lets-version will do "git fetch origin --tags --force" to ensure your branch if up-to-date with the tags on origin',
+      type: 'boolean',
+    })
+    .option('noPush', {
+      default: false,
+      description: 'If true, will not push changes and tags to origin',
       type: 'boolean',
     })
     .option('updatePeer', {
