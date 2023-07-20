@@ -1,3 +1,11 @@
+## 5.2.2-beta.1 (2023-07-20)
+
+### 🔀 Miscellaneous 🔀
+
+- bumped deps (de822e0c74903cc1c5e7d476d4ca8fe6436f2c82)
+
+---
+
 ## 5.2.2-beta.0 (2023-07-20)
 
 ### 🔀 Miscellaneous 🔀
