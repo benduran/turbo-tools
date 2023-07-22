@@ -1,3 +1,13 @@
+## 5.3.0 (2023-07-21)
+
+### 🔀 Miscellaneous 🔀
+
+- fixed grammar and bumped lets-version dep (646371ddef1c4989ffae5ab5b82b4b941c08209b)
+- Merge pull request #13 from jgodi/main (27848dea4fc48cdeadaf797cbf3756ddc2fcf202)
+- feat(version, publish): adding a noCommit flag to avoid committing any changes (534cd90f100c6fa2173af0a900057fc1f1e195d2)
+
+---
+
 ## 5.2.2-beta.1 (2023-07-20)
 
 ### 🔀 Miscellaneous 🔀
