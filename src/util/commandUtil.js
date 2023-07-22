@@ -35,6 +35,12 @@ export function getVersionAndPublishBaseYargs(yargs) {
       description: 'If true, will not write CHANGELOG.md updates for each package that has changed',
       type: 'boolean',
     })
+    .option('noCommit', {
+      default: false,
+      description:
+        'If true, will modify all required files but leave them uncommitted after all operations as completed. This will also prevent a git push from occurring',
+      type: 'boolean',
+    })
     .option('noFetchAll', {
       default: false,
       description: 'If true, will not fetch information from remote via "git fetch origin"',
