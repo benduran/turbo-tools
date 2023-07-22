@@ -1,3 +1,11 @@
+## 5.3.1 (2023-07-21)
+
+### 🔀 Miscellaneous 🔀
+
+- pinned to a specific version of Turbo that didn't have a corrupted arm64 release (17acb02e7be99154805f82f35eaa30aef71c2b26)
+
+---
+
 ## 5.3.0 (2023-07-21)
 
 ### 🔀 Miscellaneous 🔀
