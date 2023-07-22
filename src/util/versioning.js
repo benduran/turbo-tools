@@ -21,6 +21,7 @@ export function determinePublishTag(releaseAs) {
  * @property {TurboToolsConfig | null} [customConfig]
  * @property {boolean} dryRun
  * @property {boolean} noChangelog
+ * @property {boolean} noCommit
  * @property {boolean} noFetchAll
  * @property {boolean} noFetchTags
  * @property {boolean} noPush
@@ -42,6 +43,7 @@ export async function versionWithLetsVersion(opts) {
     customConfig,
     dryRun,
     noChangelog,
+    noCommit,
     noFetchAll,
     noPush,
     releaseAs,
@@ -57,6 +59,7 @@ export async function versionWithLetsVersion(opts) {
     customConfig: customConfig?.version,
     dryRun,
     noChangelog,
+    noCommit,
     noFetchAll,
     noPush,
     forceAll: all,
