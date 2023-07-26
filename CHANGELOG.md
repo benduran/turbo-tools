@@ -1,3 +1,11 @@
+## 5.3.2 (2023-07-26)
+
+### 🛠️ Fixes 🛠️
+
+- bumped lets version to fix a bug (9ffd0c8d7d6fdd97483615589c3374b3e114599c)
+
+---
+
 ## 5.3.1 (2023-07-21)
 
 ### 🔀 Miscellaneous 🔀
