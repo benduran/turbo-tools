@@ -1,3 +1,11 @@
+## 5.3.4 (2023-09-28)
+
+### 🔀 Miscellaneous 🔀
+
+- bumped certain deps (b3a512c5d200341960c4456856041cca125509dc)
+
+---
+
 ## 5.3.3 (2023-09-19)
 
 ### 🔀 Miscellaneous 🔀
