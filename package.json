@@ -39,15 +39,15 @@
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.2",
-    "@types/yargs": "^17.0.24",
+    "@types/yargs": "^17.0.25",
     "eslint-config-react-yas": "^4.1.0",
     "lint-staged": "^13.2.3",
     "npm-run-all": "^4.1.5",
     "type-fest": "^3.12.0"
   },
   "dependencies": {
-    "@better-builds/lets-version": "^0.7.1",
-    "@commitlint/cli": "^17.7.1",
+    "@better-builds/lets-version": "^0.7.4",
+    "@commitlint/cli": "^17.7.2",
     "@commitlint/config-conventional": "^17.7.0",
     "@npmcli/map-workspaces": "^3.0.4",
     "app-root-path": "^3.1.0",
