@@ -30,6 +30,7 @@ export async function publish(yargs) {
     noFetchAll,
     noFetchTags,
     noPush,
+    package: names,
     releaseAs,
     rollupChangelog,
     skipBuild,
@@ -64,6 +65,7 @@ export async function publish(yargs) {
 
   const bumpInfos = await getRecommendedBumpsByPackage({
     forceAll: all,
+    names,
     noFetchTags,
     releaseAs,
     updateOptional,
@@ -122,6 +124,7 @@ export async function publish(yargs) {
     allowUncommitted,
     customConfig: turboToolsCustomConfig,
     dryRun,
+    names,
     noCommit,
     noChangelog,
     noFetchAll,
