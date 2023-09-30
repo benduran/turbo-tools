@@ -1,3 +1,11 @@
+## 5.3.5-beta.0 (2023-09-29)
+
+### ✨ Features ✨
+
+- added package-specific filtering capabilities to version bumping and publishing (4e651af21dedafbe448e96f91ca91cba0c0b97a2)
+
+---
+
 ## 5.3.4 (2023-09-28)
 
 ### 🔀 Miscellaneous 🔀
