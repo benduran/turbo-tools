@@ -1,3 +1,11 @@
+## 5.3.5-beta.1 (2023-09-29)
+
+### 🔀 Miscellaneous 🔀
+
+- Version bump forced for all 
+
+---
+
 ## 5.3.5-beta.0 (2023-09-29)
 
 ### ✨ Features ✨
