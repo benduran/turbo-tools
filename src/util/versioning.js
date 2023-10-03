@@ -25,6 +25,7 @@ export function determinePublishTag(releaseAs) {
  * @property {boolean} noFetchAll
  * @property {boolean} noFetchTags
  * @property {boolean} noPush
+ * @property {string[]} names
  * @property {'major' | 'minor' | 'patch' | 'alpha' | 'beta' | string} [releaseAs]
  * @property {boolean} [rollupChangelog=false]
  * @property {boolean} yes
@@ -46,6 +47,7 @@ export async function versionWithLetsVersion(opts) {
     noCommit,
     noFetchAll,
     noPush,
+    names,
     releaseAs,
     rollupChangelog,
     uniqify,
@@ -62,6 +64,7 @@ export async function versionWithLetsVersion(opts) {
     noCommit,
     noFetchAll,
     noPush,
+    names,
     forceAll: all,
     releaseAs,
     rollupChangelog,

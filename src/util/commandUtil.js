@@ -57,6 +57,12 @@ export function getVersionAndPublishBaseYargs(yargs) {
       description: 'If true, will not push changes and tags to origin',
       type: 'boolean',
     })
+    .option('package', {
+      alias: 'p',
+      description:
+        'Scope the version bump and / or publish operation to specific packages. You can specify multiple by doing -p <name1> -p <name2> -p <name3>',
+      type: 'array',
+    })
     .option('updatePeer', {
       default: false,
       description: 'If true, will update any dependent "package.json#peerDependencies" fields',

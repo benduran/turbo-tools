@@ -5,7 +5,7 @@
       "ESNext",
       "DOM"
     ],
-    "module": "ES2022",
+    "module": "NodeNext",
     "moduleResolution": "nodenext",
     "allowJs": true,
     "checkJs": true,
