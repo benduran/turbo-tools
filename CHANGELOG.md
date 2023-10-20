@@ -1,3 +1,11 @@
+## 5.4.0 (2023-10-20)
+
+### ✨ Features ✨
+
+- bumped lets-version to latest, which fixes a bug, but technically changes changelog behavior (f9b17cd3d34a9c5bb305a8aae6b0da9cd519efbd)
+
+---
+
 ## 5.3.7 (2023-10-16)
 
 ### 🔀 Miscellaneous 🔀
