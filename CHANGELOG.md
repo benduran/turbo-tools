@@ -1,3 +1,11 @@
+## 5.4.1 (2023-10-23)
+
+### 🛠️ Fixes 🛠️
+
+- downgraded turbo to previous version that works on CI (a79725079487b8acb0dc445587c680999cb5e7b9)
+
+---
+
 ## 5.4.0 (2023-10-20)
 
 ### ✨ Features ✨
