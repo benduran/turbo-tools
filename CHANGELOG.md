@@ -1,3 +1,11 @@
+## 5.4.2-beta.0 (2023-10-31)
+
+### 🛠️ Fixes 🛠️
+
+- fix(deps): downgraded turbo to a version the will hopefully not explode on Linux-based CI with a turbo not found error (188fc00c3310cce5ae83a8a8cc0c0d3d85486820)
+
+---
+
 ## 5.4.1 (2023-10-23)
 
 ### 🛠️ Fixes 🛠️
