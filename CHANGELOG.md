@@ -1,3 +1,11 @@
+## 5.4.2 (2023-12-05)
+
+### 🔀 Miscellaneous 🔀
+
+- chore(deps): bumped lets-version (c6229f95d44009bfae906a640514383cfea2e12a)
+
+---
+
 ## 5.4.1 (2023-10-23)
 
 ### 🛠️ Fixes 🛠️
