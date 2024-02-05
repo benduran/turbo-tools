@@ -1,3 +1,11 @@
+## 5.4.4 (2024-02-05)
+
+### 🔀 Miscellaneous 🔀
+
+- chore: bumped min turbo dep (e3d01eca1c2a91f466707b8831069daa6236aa81)
+
+---
+
 ## 5.4.3 (2024-01-15)
 
 ### 🔀 Miscellaneous 🔀
