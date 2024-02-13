@@ -1,3 +1,11 @@
+## 5.4.5 (2024-02-13)
+
+### 🔀 Miscellaneous 🔀
+
+- chore: updated turbo to see if it fixes the missing package issue (e7cbda2a53f368fadeb41570c25e76950d4878fa)
+
+---
+
 ## 5.4.4 (2024-02-05)
 
 ### 🔀 Miscellaneous 🔀
