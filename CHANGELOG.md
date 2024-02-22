@@ -1,3 +1,11 @@
+## 5.4.6 (2024-02-21)
+
+### 🔀 Miscellaneous 🔀
+
+- Merge pull request #15 from benduran/bduran/parse-turbo-with-comments (7b5a43eda0d78b7607ca9c10fc6db683454e11af)
+
+---
+
 ## 5.4.6-beta.0 (2024-02-21)
 
 ### 🛠️ Fixes 🛠️
