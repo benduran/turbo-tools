@@ -1,3 +1,11 @@
+## 5.4.6-beta.0 (2024-02-21)
+
+### 🛠️ Fixes 🛠️
+
+- fix: allow comments when parsing turbo.json (968665363a9efac77df2b0d63ef55ff52eba4c2d)
+
+---
+
 ## 5.4.5 (2024-02-13)
 
 ### 🔀 Miscellaneous 🔀
