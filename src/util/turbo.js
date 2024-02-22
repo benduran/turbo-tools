@@ -1,4 +1,5 @@
 import appRootPath from 'app-root-path';
+import JSON from 'comment-json';
 import fs from 'fs-extra';
 import path from 'path';
 
@@ -26,7 +27,7 @@ export async function guardTurboExists() {
     console.error('turbo.json is missing. unable to use the turbo-tools');
     return false;
   }
-  const turboJsonContents = JSON.parse(await fs.readFile(turboJsonPath, 'utf8'));
+  const turboJsonContents = Object(JSON.parse(await fs.readFile(turboJsonPath, 'utf8')));
   if (!turboJsonContents.pipeline?.build) {
     console.error('turbo.json is missing a "build" pipeline. unable to use the turbo-tools');
     return false;
