@@ -1,3 +1,11 @@
+## 5.4.7 (2024-03-16)
+
+### 🔀 Miscellaneous 🔀
+
+- chore: upgraded deps (04dd269592195d7914eeea665e71ec7430408f23)
+
+---
+
 ## 5.4.6 (2024-02-21)
 
 ### 🔀 Miscellaneous 🔀
