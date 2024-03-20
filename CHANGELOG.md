@@ -1,3 +1,11 @@
+## 5.4.8-beta.0 (2024-03-20)
+
+### 🚨 Breaking Changes 🚨
+
+- chore!: bumped to latest beta version of lets-version, which contains a breaking change (5eeb7e6a7c3b433ea7925f9c07605d515709bc51)
+
+---
+
 ## 5.4.7 (2024-03-16)
 
 ### 🔀 Miscellaneous 🔀
