@@ -108,16 +108,8 @@ export async function publish(yargs) {
   }
 
   const turboToolsCustomConfig = await readTurboToolsConfig();
-  const customPublishCmd = turboToolsCustomConfig?.publish?.getCommand?.({
-    all,
-    dryRun,
-    releaseAs,
-    yes,
-  });
 
   const whichPackageManager = await getPackageManager();
-  const publishCmd = customPublishCmd?.cmd ?? whichPackageManager;
-  const publishArgs = customPublishCmd?.args ?? ['publish'];
 
   const success = await versionWithLetsVersion({
     all,
@@ -165,6 +157,17 @@ export async function publish(yargs) {
         yes,
       }) ?? Promise.resolve(true));
       if (!canPublish) process.exit(1);
+
+      const customPublishCmd = turboToolsCustomConfig?.publish?.getCommand?.({
+        all,
+        dryRun,
+        packageName: packageInfo.name,
+        packagePath: packageInfo.packagePath,
+        releaseAs,
+        yes,
+      });
+      const publishCmd = customPublishCmd?.cmd ?? whichPackageManager;
+      const publishArgs = customPublishCmd?.args ?? ['publish'];
 
       if (!dryRun) {
         execFromDir({ args: publishArgs, cmd: publishCmd, cwd: packageInfo.packagePath, stdio: 'inherit' });
