@@ -16,6 +16,12 @@ import path from 'path';
  */
 
 /**
+ * @typedef {Object} GetPublishCmdOpts
+ * @property {string} packageName
+ * @property {string} packagePath
+ */
+
+/**
  * @typedef {Object} AddToPackageJsonOpts
  *
  * @property {boolean} noDeps
@@ -73,7 +79,7 @@ import path from 'path';
  *
  * If this function doesn't exist or if it returns a falsey value, "npm publish" will be used as default
  * @callback GetCommand
- * @param {CustomFncOpts} opts
+ * @param {CustomFncOpts & GetPublishCmdOpts} opts
  *
  * @returns {GetCommandReturnType}
  */

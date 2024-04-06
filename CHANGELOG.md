@@ -1,3 +1,25 @@
+## 5.4.8-beta.1 (2024-04-03)
+
+### 🔀 Miscellaneous 🔀
+
+- Version Bump (22515fb65e44c01271eac1d8ace64c692cdf30e7)
+
+
+
+### ✨ Features ✨
+
+- feat(publish): added additional opts that are provided to the custom command override (fbfa17b0688ba570dea5b19cecae5868465036ff)
+
+---
+
+## 5.4.8-beta.0 (2024-04-03)
+
+### ✨ Features ✨
+
+- feat(publish): added additional opts that are provided to the custom command override (fbfa17b0688ba570dea5b19cecae5868465036ff)
+
+---
+
 ## 5.4.7 (2024-03-16)
 
 ### 🔀 Miscellaneous 🔀
