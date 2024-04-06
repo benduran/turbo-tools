@@ -1,3 +1,17 @@
+## 5.4.8 (2024-04-06)
+
+### 🔀 Miscellaneous 🔀
+
+- Merge pull request #16 from benduran/bduran/additional-publish-cmd-opts (3560b2d76f6410b636273a9d3781a283c20d651f)
+
+
+
+### 📖 Docs 📖
+
+- docs: updated readme to callout the new options passed to getCommand() (57fdf214aa906899f345d8101afa007184a5363c)
+
+---
+
 ## 5.4.8-beta.1 (2024-04-03)
 
 ### 🔀 Miscellaneous 🔀
