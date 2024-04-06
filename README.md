@@ -160,7 +160,11 @@ export default defineTurboConfig({
     // if you need to use something other than "npm publish" for publishing your packages,
     // you can construct the command and its arguments here and return them to have Turbo Tools
     // call the command when publishing each package in the repository
-    getCommand({ all, dryRun, releaseAs, publishTag, yes }) {
+    getCommand({ all, dryRun, releaseAs, packageName, packagePath, publishTag, yes }) {
+      if (packageName === '@my-monorepo-package/some-package') {
+        return { args: [], cmd: 'package-specific-publish-command' };
+      }
+
       const cmd = 'custom-publish-command';
       const args = ['publish'];
       if (releaseAs) args.push('--release-as', releaseAs);
