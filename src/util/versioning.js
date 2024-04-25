@@ -30,6 +30,7 @@ export function determinePublishTag(releaseAs) {
  * @property {boolean} [rollupChangelog=false]
  * @property {boolean} yes
  * @property {boolean} uniqify
+ * @property {boolean} saveExact
  * @property {boolean} updateOptional
  * @property {boolean} updatePeer
  */
@@ -51,6 +52,7 @@ export async function versionWithLetsVersion(opts) {
     releaseAs,
     rollupChangelog,
     uniqify,
+    saveExact,
     updateOptional,
     updatePeer,
     yes,
@@ -69,6 +71,7 @@ export async function versionWithLetsVersion(opts) {
     releaseAs,
     rollupChangelog,
     uniqify,
+    saveExact,
     updateOptional,
     updatePeer,
     yes,
