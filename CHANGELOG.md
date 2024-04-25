@@ -1,3 +1,17 @@
+## 5.5.0 (2024-04-25)
+
+### 🔀 Miscellaneous 🔀
+
+- Merge pull request #17 from brucespang/bspang/save-exact (e83a42dece4f16c8b8c652053641cf0cadbecb74)
+
+
+
+### ✨ Features ✨
+
+- feat(lets-version): add --saveExact argument, which is passed through to lets-version (d5701ce2d3bc6b895c4fd49cf806551e40d0fb80)
+
+---
+
 ## 5.4.8 (2024-04-06)
 
 ### 🔀 Miscellaneous 🔀
