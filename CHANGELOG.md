@@ -1,3 +1,11 @@
+## 6.0.1 (2024-06-04)
+
+### 🛠️ Fixes 🛠️
+
+- fix: updated the init turbo.json template (ce9cc84d69533ddbd57c9402862e47604e1f97a6)
+
+---
+
 ## 6.0.0 (2024-06-04)
 
 ### 🚨 Breaking Changes 🚨
