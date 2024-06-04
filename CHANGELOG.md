@@ -1,3 +1,12 @@
+## 6.0.0 (2024-06-04)
+
+### 🚨 Breaking Changes 🚨
+
+- Merge pull request #19 from benduran/bduran/turbo-upgrade (b9a40048d3ace7347cfe3ccdff1abb34748f08ae)
+- feat!: upgrade to latest major turbo (8c35c31ed70aedc348aac57272db4e1357f99ce6)
+
+---
+
 ## 5.5.1 (2024-04-25)
 
 ### 🔀 Miscellaneous 🔀
