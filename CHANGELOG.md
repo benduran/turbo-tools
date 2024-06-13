@@ -1,3 +1,17 @@
+## 6.1.0 (2024-06-12)
+
+### ✨ Features ✨
+
+- feat: deprecated the '--all' flag, in favor of more idiomatic '--force' (95e82ab09c68c1835ffd2697a6e2f3166d360534)
+
+
+
+### 🔀 Miscellaneous 🔀
+
+- chore: bumped deps (96b4f7b496a8244eb78f2dba2b33d2118adc3963)
+
+---
+
 ## 6.0.1 (2024-06-04)
 
 ### 🛠️ Fixes 🛠️
