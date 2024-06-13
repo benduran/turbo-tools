@@ -22,9 +22,10 @@ import {
  */
 export async function publish(yargs) {
   const {
-    all,
+    all: __deprecatedAll,
     allowUncommitted,
     dryRun,
+    force,
     noChangelog,
     noCommit,
     noFetchAll,
@@ -65,7 +66,7 @@ export async function publish(yargs) {
   const publishTag = determinePublishTag(releaseAs);
 
   const bumpInfos = await getRecommendedBumpsByPackage({
-    forceAll: all,
+    forceAll: force,
     names,
     noFetchTags,
     releaseAs,
@@ -113,10 +114,10 @@ export async function publish(yargs) {
   const whichPackageManager = await getPackageManager();
 
   const success = await versionWithLetsVersion({
-    all,
     allowUncommitted,
     customConfig: turboToolsCustomConfig,
     dryRun,
+    force: __deprecatedAll ?? force,
     names,
     noCommit,
     noChangelog,
@@ -151,8 +152,9 @@ export async function publish(yargs) {
     }
     try {
       const canPublish = await (turboToolsCustomConfig?.publish?.checkCanPublish?.({
-        all,
+        all: __deprecatedAll ?? force,
         dryRun,
+        force: __deprecatedAll ?? force,
         packagePath: packageInfo.packagePath,
         publishTag,
         releaseAs,
@@ -161,8 +163,9 @@ export async function publish(yargs) {
       if (!canPublish) process.exit(1);
 
       const customPublishCmd = turboToolsCustomConfig?.publish?.getCommand?.({
-        all,
+        all: __deprecatedAll ?? force,
         dryRun,
+        force: __deprecatedAll ?? force,
         packageName: packageInfo.name,
         packagePath: packageInfo.packagePath,
         releaseAs,

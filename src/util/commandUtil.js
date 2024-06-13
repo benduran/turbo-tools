@@ -20,6 +20,7 @@ export function getVersionAndPublishBaseYargs(yargs) {
       all: {
         alias: 'a',
         default: false,
+        deprecated: 'Use --force instead',
         description:
           'If true, dirties all monorepo packages and thus, forces them all to be version bumped and published',
         type: 'boolean',
@@ -35,6 +36,12 @@ export function getVersionAndPublishBaseYargs(yargs) {
         default: false,
         description:
           'If true, will perform all steps right up until publish, and then output what would happen if publish were to continue',
+        type: 'boolean',
+      },
+      force: {
+        default: false,
+        description:
+          'If true, dirties all monorepo packages and thus, forces them all to be version bumped and published',
         type: 'boolean',
       },
       noChangelog: {

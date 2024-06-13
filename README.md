@@ -66,7 +66,7 @@ Options:
                            <name1> -p <name2> -p <name3>                 [array]
   -a, --all               If true, dirties all monorepo packages and thus, force
                           s them all to be version bumped and published
-                                                      [boolean] [default: false]
+                    [deprecated: Use --force instead] [boolean] [default: false]
       --allowUncommitted  If true, will allow the version operation to continue
                           when there are uncommitted files in the repo at versio
                           n bump time. This is usefull if you have some scripts
@@ -76,6 +76,9 @@ Options:
   -d, --dryRun            If true, will perform all steps right up until publish
                           , and then output what would happen if publish were to
                            continue                   [boolean] [default: false]
+      --force             If true, dirties all monorepo packages and thus, force
+                          s them all to be version bumped and published
+                                                      [boolean] [default: false]
       --noChangelog       If true, will not write CHANGELOG.md updates for each
                           package that has changed    [boolean] [default: false]
       --noCommit          If true, will modify all required files but leave them
@@ -127,7 +130,7 @@ Options:
                            <name1> -p <name2> -p <name3>                 [array]
   -a, --all               If true, dirties all monorepo packages and thus, force
                           s them all to be version bumped and published
-                                                      [boolean] [default: false]
+                    [deprecated: Use --force instead] [boolean] [default: false]
       --allowUncommitted  If true, will allow the version operation to continue
                           when there are uncommitted files in the repo at versio
                           n bump time. This is usefull if you have some scripts
@@ -137,6 +140,9 @@ Options:
   -d, --dryRun            If true, will perform all steps right up until publish
                           , and then output what would happen if publish were to
                            continue                   [boolean] [default: false]
+      --force             If true, dirties all monorepo packages and thus, force
+                          s them all to be version bumped and published
+                                                      [boolean] [default: false]
       --noChangelog       If true, will not write CHANGELOG.md updates for each
                           package that has changed    [boolean] [default: false]
       --noCommit          If true, will modify all required files but leave them
@@ -236,14 +242,14 @@ export default defineTurboConfig({
   publish: {
     // you can perform some async operation here if you'd like to check whether
     // a publish should continue or not
-    async checkCanPublish({ all, dryRun, releaseAs, packagePath, publishTag, yes }) {
+    async checkCanPublish({ dryRun, force, releaseAs, packagePath, publishTag, yes }) {
       return true;
     },
 
     // if you need to use something other than "npm publish" for publishing your packages,
     // you can construct the command and its arguments here and return them to have Turbo Tools
     // call the command when publishing each package in the repository
-    getCommand({ all, dryRun, releaseAs, packageName, packagePath, publishTag, yes }) {
+    getCommand({ dryRun, force, releaseAs, packageName, packagePath, publishTag, yes }) {
       if (packageName === '@my-monorepo-package/some-package') {
         return { args: [], cmd: 'package-specific-publish-command' };
       }

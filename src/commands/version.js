@@ -10,9 +10,10 @@ import { getVersionAndPublishBaseYargs, versionWithLetsVersion } from '../util/i
  */
 export async function version(yargs) {
   const {
-    all,
+    all: __deprecatedAll,
     allowUncommitted,
     dryRun,
+    force,
     noChangelog,
     noCommit,
     noFetchAll,
@@ -29,9 +30,9 @@ export async function version(yargs) {
   } = await getVersionAndPublishBaseYargs(yargs).help().argv;
 
   const success = await versionWithLetsVersion({
-    all,
     allowUncommitted,
     dryRun,
+    force: __deprecatedAll ?? force,
     names,
     noChangelog,
     noCommit,

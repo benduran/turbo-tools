@@ -9,8 +9,9 @@ import path from 'path';
 /**
  * @typedef {Object} CustomFncOpts
  *
- * @property {boolean} all
+ * @property {boolean} all - Deprecated. Use "force" property instead
  * @property {boolean} dryRun
+ * @property {boolean} force
  * @property {string} [releaseAs]
  * @property {boolean} yes
  */
@@ -41,8 +42,9 @@ import path from 'path';
 
 /**
  * @typedef {Object} CheckCanPublishOpts
- * @property {boolean} [all=false]
+ * @property {boolean} [all=false] - Deprecated. Use "force" instead
  * @property {boolean} [dryRun=false]
+ * @property {boolean} [force=false]
  * @property {string} packagePath
  * @property {'alpha' | 'beta' | ''} [publishTag='']
  * @property {string} [releaseAs]

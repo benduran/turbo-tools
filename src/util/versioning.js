@@ -16,10 +16,10 @@ export function determinePublishTag(releaseAs) {
 
 /**
  * @typedef {Object} VersionOpts
- * @property {boolean} all
  * @property {boolean} allowUncommitted
  * @property {TurboToolsConfig | null} [customConfig]
  * @property {boolean} dryRun
+ * @property {boolean} force
  * @property {boolean} noChangelog
  * @property {boolean} noCommit
  * @property {boolean} noFetchAll
@@ -40,10 +40,10 @@ export function determinePublishTag(releaseAs) {
  */
 export async function versionWithLetsVersion(opts) {
   const {
-    all,
     allowUncommitted,
     customConfig,
     dryRun,
+    force,
     noChangelog,
     noCommit,
     noFetchAll,
@@ -67,7 +67,7 @@ export async function versionWithLetsVersion(opts) {
     noFetchAll,
     noPush,
     names,
-    forceAll: all,
+    forceAll: force,
     releaseAs,
     rollupChangelog,
     uniqify,
