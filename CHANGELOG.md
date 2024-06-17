@@ -1,3 +1,11 @@
+## 6.1.1 (2024-06-17)
+
+### 🔀 Miscellaneous 🔀
+
+- chore: bumped to latest beta version of lets-version (aa31c4314f504c5254d35f0652b191a702421eac)
+
+---
+
 ## 6.1.0 (2024-06-12)
 
 ### ✨ Features ✨
