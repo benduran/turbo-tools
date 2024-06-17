@@ -48,7 +48,7 @@
     "vitest": "^1.6.0"
   },
   "dependencies": {
-    "@better-builds/lets-version": "^0.8.4",
+    "@better-builds/lets-version": "^0.8.5-beta.1",
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
     "@npmcli/map-workspaces": "^3.0.6",
