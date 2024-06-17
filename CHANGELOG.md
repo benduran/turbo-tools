@@ -1,3 +1,11 @@
+## 6.1.2-beta.0 (2024-06-17)
+
+### 🔀 Miscellaneous 🔀
+
+- Version bump forced for all
+
+---
+
 ## 6.1.1 (2024-06-17)
 
 ### 🔀 Miscellaneous 🔀
