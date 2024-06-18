@@ -13,7 +13,7 @@ Turbo Tools add the ability for you to perform version bumps of all your package
 
 **Turbo Tools supports `npm`, `yarn` and `pnpm`.**
 
-You must have `turbo@>1.9.9` declare in your `package.json` file.
+You must have `turbo@>=1.9.9` declared in your `package.json` file.
 
 ---
 
