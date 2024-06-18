@@ -66,7 +66,7 @@ export async function publish(yargs) {
   const publishTag = determinePublishTag(releaseAs);
 
   const bumpInfos = await getRecommendedBumpsByPackage({
-    forceAll: force,
+    force,
     names,
     noFetchTags,
     releaseAs,

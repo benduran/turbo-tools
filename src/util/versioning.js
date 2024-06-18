@@ -67,7 +67,7 @@ export async function versionWithLetsVersion(opts) {
     noFetchAll,
     noPush,
     names,
-    forceAll: force,
+    force,
     // @ts-ignore
     releaseAs: releaseAs || 'auto',
     rollupChangelog,
