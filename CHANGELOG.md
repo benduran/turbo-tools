@@ -1,3 +1,11 @@
+## 7.0.0 (2024-06-18)
+
+### 🔀 Miscellaneous 🔀
+
+- Merge pull request #20 from benduran/bduran/bump-lets-version-again (26d3a65f25c071e9697749284d8980f175ff3c4b)
+
+---
+
 ## 6.1.2-beta.1 (2024-06-18)
 
 ### 🔀 Miscellaneous 🔀
