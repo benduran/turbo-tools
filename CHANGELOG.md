@@ -1,3 +1,33 @@
+## 6.1.2-beta.1 (2024-06-18)
+
+### 🔀 Miscellaneous 🔀
+
+- chore: bumped lets version and fixed force flag passthrough (c6d88010279c4a5aa3f2a2eeb558530531db53f2)
+
+
+
+### 📖 Docs 📖
+
+- docs: updated typo in the readme (61983bc434f1cad0b0864a701408f65284ee6b92)
+
+---
+
+## 6.1.2-beta.0 (2024-06-17)
+
+### 🔀 Miscellaneous 🔀
+
+- Version bump forced for all
+
+---
+
+## 6.1.1 (2024-06-17)
+
+### 🔀 Miscellaneous 🔀
+
+- chore: bumped to latest beta version of lets-version (aa31c4314f504c5254d35f0652b191a702421eac)
+
+---
+
 ## 6.1.0 (2024-06-12)
 
 ### ✨ Features ✨

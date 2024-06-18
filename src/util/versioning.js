@@ -1,5 +1,5 @@
 /**
- * @typedef {import('@better-builds/lets-version').ChangeLogLineFormatter} ChangeLogLineFormatter
+ * @typedef {import('@better-builds/lets-version')} ChangeLogLineFormatter
  * @typedef {import('../config.js').TurboToolsConfig} TurboToolsConfig
  */
 
@@ -67,8 +67,9 @@ export async function versionWithLetsVersion(opts) {
     noFetchAll,
     noPush,
     names,
-    forceAll: force,
-    releaseAs,
+    force,
+    // @ts-ignore
+    releaseAs: releaseAs || 'auto',
     rollupChangelog,
     uniqify,
     saveExact,
