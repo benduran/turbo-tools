@@ -1,3 +1,11 @@
+## 7.1.0 (2024-06-19)
+
+### ✨ Features ✨
+
+- feat: bumped to latest lets-version (c1b17332258d2d3ff5de5cef2392bf91a796c2b9)
+
+---
+
 ## 7.0.0 (2024-06-18)
 
 ### 🔀 Miscellaneous 🔀
