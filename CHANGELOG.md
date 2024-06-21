@@ -1,3 +1,11 @@
+## 7.1.1 (2024-06-21)
+
+### 🔀 Miscellaneous 🔀
+
+- chore: upgraded linting config and fixed issues that came up as a result (c676f2c058915f8fb1465d5059a0c753842983d0)
+
+---
+
 ## 7.1.0 (2024-06-19)
 
 ### ✨ Features ✨
