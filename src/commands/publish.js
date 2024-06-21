@@ -179,12 +179,12 @@ export async function publish(yargs) {
       } else {
         console.info(`  Publishing ${packageInfo.name} using command:\n    ${publishCmd} ${publishArgs.join(' ')}`);
       }
-      // @ts-ignore
+      // @ts-expect-error - dictionary access is safe because we've guarded against the name above
       publishSuccessMap[packageInfo.name] = packageInfo.version;
     } catch (error) {
       console.error(`FAIL: ${packageInfo.name} failed to publish!`);
       console.error(error);
-      // @ts-ignore
+      // @ts-expect-error - same issue as above
       publishFailureMap[packageInfo.name] = packageInfo.version;
     }
   }

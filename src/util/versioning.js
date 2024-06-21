@@ -68,7 +68,7 @@ export async function versionWithLetsVersion(opts) {
     noPush,
     names,
     force,
-    // @ts-ignore
+    // @ts-expect-error - we can't cast in plain JS to the union type here, so we'll silence TSC instead
     releaseAs: releaseAs || 'auto',
     rollupChangelog,
     uniqify,
