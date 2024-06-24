@@ -1,3 +1,11 @@
+## 7.1.2 (2024-06-24)
+
+### 🛠️ Fixes 🛠️
+
+- fix: bumped to latest lets-version to get the child dep bump fixes (49ea4f61992b1a06593a959c63bb96fce83f6797)
+
+---
+
 ## 7.1.1 (2024-06-21)
 
 ### 🔀 Miscellaneous 🔀
