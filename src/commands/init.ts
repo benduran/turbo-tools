@@ -1,13 +1,10 @@
-/**
- * @typedef {import('yargs').Argv} Argv
- */
-
 import appRootPath from 'app-root-path';
 import deepMerge from 'deepmerge';
 import glob from 'fast-glob';
 import fs from 'fs-extra';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { type Argv } from 'yargs';
 
 import { readTurboToolsConfig } from '../config.js';
 import { execFromDir, findPackages, getPackageManager } from '../util/index.js';
@@ -20,7 +17,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
  *
  * @param {Argv} yargs
  */
-export async function init(yargs) {
+export async function init(yargs: Argv) {
   console.info('Running init');
   const { noDeps, noPublish } = await yargs
     .option('noPublish', {
@@ -62,10 +59,10 @@ export async function init(yargs) {
         const filename = path.basename(tpath);
         const dest = path.join(monorepoRoot, filename);
 
-        /** @type {Buffer | string} */
         let content = await fs.readFile(tpath);
         if (filename.includes('publish-changed-packages.sh')) {
           const strContents = content.toString('utf-8');
+          // @ts-expect-error - we are converting to a string first, so this is a safe operation
           content = strContents.replace(/{{whichPackageManager}}/gm, which === 'npm' ? 'npx' : which);
         }
         console.info(`  Writing ${dest}`);
