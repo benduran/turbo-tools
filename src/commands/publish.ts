@@ -161,7 +161,7 @@ export async function publish(yargs: Argv) {
         force: __deprecatedAll ?? force,
         packageName: packageInfo.name,
         packagePath: packageInfo.packagePath,
-        releaseAs,
+        releaseAs: releaseAs as ReleaseAsPresets,
         yes,
       });
       const publishCmd = customPublishCmd?.cmd ?? whichPackageManager;
