@@ -1,3 +1,17 @@
+## 7.1.3-beta.0 (2024-07-05)
+
+### ✨ Features ✨
+
+- feat: ported all logic files to typescript (f2852bf37058170138eb3d4b4e79496ff8a5cf3d)
+
+
+
+### 🔀 Miscellaneous 🔀
+
+- chore: started porting turbo-tools to typescript, to address the terrible dev-time performance of the typechecker in the IDE (7cf92665f1e5078ed58dafd96f8781f753dec16b)
+
+---
+
 ## 7.1.2 (2024-06-24)
 
 ### 🛠️ Fixes 🛠️
