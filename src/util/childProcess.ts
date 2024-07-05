@@ -1,22 +1,20 @@
 import appRootPath from 'app-root-path';
 import { execSync } from 'child_process';
 
-/**
- * @typedef {Object} ExecFromDirOptions
- * @property {string[]} args
- * @property {string} cmd
- * @property {string} cwd
- * @property {'inherit' | 'pipe'} stdio
- */
+interface ExecFromDirOptions {
+  args: string[];
+  cmd: string;
+  cwd: string;
+  stdio: 'inherit' | 'pipe';
+}
 
 // 5 MB
 const MAX_BUFFER_SIZE = 1024 * 1024 * 5;
 
 /**
  * Executes a command asynchronously from a specific dir
- * @param {ExecFromDirOptions} opts
  */
-export function execFromDir({ args, cmd, cwd, stdio }) {
+export function execFromDir({ args, cmd, cwd, stdio }: ExecFromDirOptions) {
   const toExec = `${cmd} ${args.join(' ')}`;
   console.info(`Executing ${toExec} in ${cwd}`);
 
@@ -25,9 +23,7 @@ export function execFromDir({ args, cmd, cwd, stdio }) {
 
 /**
  * Executes a command synchronously in the root of the project a.k.a. the monorepo root
- *
- * @param {Omit<ExecFromDirOptions, 'cwd'>} args
  */
-export function execFromRoot(args) {
+export function execFromRoot(args: Omit<ExecFromDirOptions, 'cwd'>) {
   return execFromDir({ ...args, cwd: appRootPath.toString() });
 }

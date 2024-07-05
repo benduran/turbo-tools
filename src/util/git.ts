@@ -39,10 +39,8 @@ export async function getLocalGitTags() {
 /**
  * Detects the default branch where all PRs and branches are merged.
  * Useful when initializing a repo with the turbo-tools
- *
- * @param {string} cwd
  */
-export async function getDefaultGitBranch(cwd) {
+export async function getDefaultGitBranch(cwd: string) {
   try {
     const stdout = execFromDir({
       args: ['symbolic-ref', 'refs/remotes/origin/HEAD'],

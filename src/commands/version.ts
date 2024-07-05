@@ -1,14 +1,12 @@
-/**
- * @typedef {import('yargs').Argv} Argv
- */
+import { ReleaseAsPresets } from '@better-builds/lets-version';
+import type { Argv } from 'yargs';
 
 import { getVersionAndPublishBaseYargs, versionWithLetsVersion } from '../util/index.js';
 
 /**
  * This performs only version bumps of packages in your monorepo
- * @param {Argv} yargs
  */
-export async function version(yargs) {
+export async function version(yargs: Argv) {
   const {
     all: __deprecatedAll,
     allowUncommitted,
@@ -33,13 +31,13 @@ export async function version(yargs) {
     allowUncommitted,
     dryRun,
     force: __deprecatedAll ?? force,
-    names,
+    names: (names ?? []).map(String),
     noChangelog,
     noCommit,
     noFetchAll,
     noFetchTags,
     noPush,
-    releaseAs,
+    releaseAs: releaseAs as ReleaseAsPresets,
     rollupChangelog,
     uniqify,
     saveExact,

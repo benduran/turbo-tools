@@ -1,8 +1,5 @@
-/**
- * @typedef {import('yargs').Argv} Argv
- */
-
-import { getRecommendedBumpsByPackage } from '@better-builds/lets-version';
+import { getRecommendedBumpsByPackage, ReleaseAsPresets } from '@better-builds/lets-version';
+import { Argv } from 'yargs';
 
 import { readTurboToolsConfig } from '../config.js';
 import {
@@ -16,11 +13,7 @@ import {
   versionWithLetsVersion,
 } from '../util/index.js';
 
-/**
- *
- * @param {Argv} yargs
- */
-export async function publish(yargs) {
+export async function publish(yargs: Argv) {
   const {
     all: __deprecatedAll,
     allowUncommitted,
@@ -63,13 +56,13 @@ export async function publish(yargs) {
     })
     .help().argv;
 
-  const publishTag = determinePublishTag(releaseAs);
+  const publishTag = determinePublishTag(releaseAs as ReleaseAsPresets | undefined);
 
   const bumpInfos = await getRecommendedBumpsByPackage({
     force,
-    names,
+    names: (names ?? []).map(String),
     noFetchTags,
-    releaseAs,
+    releaseAs: releaseAs as ReleaseAsPresets,
     updateOptional,
     updatePeer,
     uniqify,
@@ -115,16 +108,16 @@ export async function publish(yargs) {
 
   const success = await versionWithLetsVersion({
     allowUncommitted,
-    customConfig: turboToolsCustomConfig,
+    customConfig: turboToolsCustomConfig ?? undefined,
     dryRun,
     force: __deprecatedAll ?? force,
-    names,
+    names: (names ?? []).map(String),
     noCommit,
     noChangelog,
     noFetchAll,
     noFetchTags,
     noPush,
-    releaseAs,
+    releaseAs: releaseAs as ReleaseAsPresets,
     rollupChangelog,
     uniqify,
     saveExact,

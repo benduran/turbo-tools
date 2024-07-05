@@ -1,6 +1,4 @@
-/**
- * @typedef {import('yargs').Argv} Argv
- */
+import type { Argv } from 'yargs';
 
 /**
  * Utility Yargs function to be used between the Publish and Version CLI commands.
@@ -8,7 +6,7 @@
  *
  * @param {Argv} yargs
  */
-export function getVersionAndPublishBaseYargs(yargs) {
+export function getVersionAndPublishBaseYargs(yargs: Argv) {
   return yargs
     .option('package', {
       alias: 'p',

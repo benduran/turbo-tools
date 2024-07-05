@@ -1,10 +1,7 @@
 #!/usr/bin/env node
 
-/**
- * @typedef {import('yargs').Argv} Argv
- */
-
 import { EOL } from 'os';
+import { Argv } from 'yargs';
 
 import { findPackages } from '../util/index.js';
 
@@ -14,7 +11,7 @@ import { findPackages } from '../util/index.js';
  *
  * @param {Argv} yargs
  */
-export async function list(yargs) {
+export async function list(yargs: Argv) {
   const { json } = await yargs.option('json', {
     alias: 'j',
     description:

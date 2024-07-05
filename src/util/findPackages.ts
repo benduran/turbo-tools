@@ -1,11 +1,8 @@
-/**
- * @typedef {import('type-fest').PackageJson} PackageJson
- */
-
 import mapWorkspaces from '@npmcli/map-workspaces';
 import appRootPath from 'app-root-path';
 import fs from 'fs-extra';
 import path from 'path';
+import type { PackageJson } from 'type-fest';
 
 import { execFromDir } from './childProcess.js';
 import { getPackageManager } from './getPackageManager.js';
@@ -17,13 +14,11 @@ export async function findPackages(monorepoRoot = appRootPath.toString()) {
   const whichPM = await getPackageManager(monorepoRoot);
   const rootPJSON = JSON.parse(await fs.readFile(path.join(monorepoRoot, 'package.json'), 'utf8'));
 
-  /** @type {Map<string, string>} */
-  let workspaces;
+  let workspaces: Map<string, string>;
 
   if (whichPM === 'pnpm') {
     // this will also include the ROOT workspace, which we need to manually exclude
-    /** @type {Array<{ name: string; path: string; private: boolean; version: string }>} */
-    const foundPnpmWorkspaces = JSON.parse(
+    const foundPnpmWorkspaces: Array<{ name: string; path: string; private: boolean; version: string }> = JSON.parse(
       execFromDir({
         args: ['list', '-r', '--depth', '-1', '--json'],
         cmd: 'pnpm',
@@ -43,8 +38,7 @@ export async function findPackages(monorepoRoot = appRootPath.toString()) {
 
   const packages = await Promise.all(
     Array.from(workspaces.entries()).map(async ([name, packagePath]) => {
-      /** @type {PackageJson} */
-      const pjson = JSON.parse(await fs.readFile(path.join(packagePath, 'package.json'), 'utf8'));
+      const pjson = JSON.parse(await fs.readFile(path.join(packagePath, 'package.json'), 'utf8')) as PackageJson;
       return {
         isPrivate: pjson.private ?? false,
         name,
