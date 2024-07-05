@@ -1,3 +1,12 @@
+## 7.1.3-beta.1 (2024-07-05)
+
+### 🛠️ Fixes 🛠️
+
+- fix: fixed typecast (02eda3c59f443d6467077f6d6e291f7571ee0bff)
+- fix: fixed missing type imports and exports (12f85ab9d616aef1b184334ea26a7bd5c31182a8)
+
+---
+
 ## 7.1.3-beta.0 (2024-07-05)
 
 ### ✨ Features ✨
