@@ -1,4 +1,5 @@
-import { type LetsVersionConfig } from '@better-builds/lets-version';
+import { type LetsVersionConfig, ReleaseAsPresets } from '@better-builds/lets-version';
+import { PM as WhichPM } from 'detect-package-manager';
 import fs from 'fs-extra';
 import path from 'path';
 import { type PackageJson } from 'type-fest';
@@ -10,7 +11,7 @@ export interface CustomFncOpts {
   all?: boolean;
   dryRun?: boolean;
   force?: boolean;
-  releaseAs?: ReleaseAsPreset;
+  releaseAs?: ReleaseAsPresets;
   yes?: boolean;
 }
 
