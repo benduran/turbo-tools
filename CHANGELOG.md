@@ -1,3 +1,11 @@
+## 7.2.0 (2024-11-29)
+
+### 🚨 Breaking Changes 🚨
+
+- feat!: updated deps (eaea6fe206ca2a612e9d399b78ee0f3633fb4c29)
+
+---
+
 ## 7.1.2 (2024-06-24)
 
 ### 🛠️ Fixes 🛠️
