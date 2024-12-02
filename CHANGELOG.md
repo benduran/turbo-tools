@@ -1,3 +1,11 @@
+## 7.3.0 (2024-12-02)
+
+### 🛠️ Fixes 🛠️
+
+- fix: bumped lets-version to get a bugfix and moved to bun as package manager (53b06cb9e372ec599f80fda56cc4d415893bfa29)
+
+---
+
 ## 7.2.0 (2024-11-29)
 
 ### 🚨 Breaking Changes 🚨
