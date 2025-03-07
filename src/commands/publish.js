@@ -96,7 +96,7 @@ export async function publish(yargs) {
   if (!skipTest) {
     execFromRoot({
       cmd: 'npx',
-      args: ['turbo', 'run', '--continue', 'test', filterArg],
+      args: ['turbo', 'run', 'test', '--continue', filterArg],
       stdio: 'inherit',
     });
   }
@@ -104,7 +104,7 @@ export async function publish(yargs) {
   if (!skipBuild) {
     execFromRoot({
       cmd: 'npx',
-      args: ['turbo', 'run', '--continue', 'build', filterArg],
+      args: ['turbo', 'run', 'build', '--continue', filterArg],
       stdio: 'inherit',
     });
   }
