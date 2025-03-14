@@ -1,3 +1,17 @@
+## 7.3.1 (2025-03-14)
+
+### 🔀 Miscellaneous 🔀
+
+- Merge pull request #22 from vladkampov/patch-1 (988a06fc0dbe2ccf598dac5305510ea3d7ed2252)
+
+
+
+### 🛠️ Fixes 🛠️
+
+- fix: change the order of arguments in publish execution (09db51a5d359436715563466d45f161c58fc50bb)
+
+---
+
 ## 7.3.0 (2024-12-02)
 
 ### 🛠️ Fixes 🛠️
