@@ -1,3 +1,11 @@
+## 7.3.2 (2025-04-05)
+
+### 🔀 Miscellaneous 🔀
+
+- chore: updated lets-version dep (20d9359a20a40e5f6b43b2cd0492a691311786ab)
+
+---
+
 ## 7.3.1 (2025-03-14)
 
 ### 🔀 Miscellaneous 🔀
