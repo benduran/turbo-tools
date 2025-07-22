@@ -68,6 +68,8 @@ export async function publish(yargs) {
   const bumpInfos = await getRecommendedBumpsByPackage({
     force,
     names,
+    saveExact,
+    noFetchAll,
     noFetchTags,
     releaseAs,
     updateOptional,
