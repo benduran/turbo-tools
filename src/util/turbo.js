@@ -28,16 +28,16 @@ export async function guardTurboExists() {
     return false;
   }
   const turboJsonContents = Object(JSON.parse(await fs.readFile(turboJsonPath, 'utf8')));
-  if (!turboJsonContents.pipeline?.build) {
-    console.error('turbo.json is missing a "build" pipeline. unable to use the turbo-tools');
+  if (!turboJsonContents.tasks?.build) {
+    console.error('turbo.json is missing a "build" task. unable to use the turbo-tools');
     return false;
   }
-  if (!turboJsonContents.pipeline?.lint) {
-    console.error('turbo.json is missing a "lint" pipeline. unable to use the turbo-tools');
+  if (!turboJsonContents.tasks?.lint) {
+    console.error('turbo.json is missing a "lint" task. unable to use the turbo-tools');
     return false;
   }
-  if (!turboJsonContents.pipeline?.test) {
-    console.error('turbo.json is missing a "test" pipeline. unable to use the turbo-tools');
+  if (!turboJsonContents.tasks?.test) {
+    console.error('turbo.json is missing a "test" task. unable to use the turbo-tools');
     return false;
   }
   return true;
