@@ -1,9 +1,9 @@
 #!/bin/bash
 
 if [ "$CI" != "" ]; then
-  npm ci
+  bun i --frozen-lockfile
 else
-  npm install
+  bun i
 fi
 
-npx husky install
+bun husky install
