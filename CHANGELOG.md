@@ -1,3 +1,12 @@
+## 7.3.3 (2025-07-23)
+
+### 🔀 Miscellaneous 🔀
+
+- Merge pull request #25 from erickisos/bugfix/pass-args (7b834d9c360416b734ec3d6f02fc795fd820ecaa)
+- bugfix(publish): pass saveExact and noFetchAll parameters to lets-version (4c29102368929d84050d365491fe8ab3d18e8134)
+
+---
+
 ## 7.3.2 (2025-04-05)
 
 ### 🔀 Miscellaneous 🔀
