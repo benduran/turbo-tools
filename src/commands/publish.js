@@ -4,6 +4,7 @@
 
 import { getRecommendedBumpsByPackage } from '@better-builds/lets-version';
 
+import appRootPath from 'app-root-path';
 import { readTurboToolsConfig } from '../config.js';
 import {
   determinePublishTag,
@@ -86,7 +87,12 @@ export async function publish(yargs) {
     );
   }
 
-  const turboExists = guardTurboExists();
+  const turboExists = guardTurboExists({
+    checkLint: !skipLint,
+    checkTest: !skipTest,
+    checkBuild: !skipBuild,
+  });
+
   if (!turboExists) process.exit(1);
 
   if (!skipLint) {
