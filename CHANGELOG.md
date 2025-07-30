@@ -1,3 +1,19 @@
+## 7.3.4 (2025-07-30)
+
+### 🔀 Miscellaneous 🔀
+
+- Merge pull request #24 from erickisos/chore/23 (7a0c08d3c0af1b9686382b3d48593b589c1234db)
+- bugfix(turbo-util): consider pipeline, tasks and skip flags (00175ec58bd8b17df8c69f02b811612796c71d3c)
+- chore: adjusted the repo-setup.sh script to support bun (a728f1dc02db382a1cc684d6faa6b14ec328c674)
+
+
+
+### 🛠️ Fixes 🛠️
+
+- fix: use turboJson.tasks instead of pipelines field (7e4c3d5e3f711f47686073bb5aa0c01896f6cd90)
+
+---
+
 ## 7.3.3 (2025-07-23)
 
 ### 🔀 Miscellaneous 🔀
