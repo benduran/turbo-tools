@@ -9,8 +9,10 @@ import { execFromRoot } from './childProcess.js';
  * Utility function that performs checks to determine
  * if turbo was installed correctly, and if a proper "turbo.json"
  * file exists, that it has "lint," "test," and "build" commands
+ *
+ * @param {{ checkLint?: boolean, checkTest?: boolean, checkBuild?: boolean }} params
  */
-export async function guardTurboExists() {
+export async function guardTurboExists({ checkLint, checkTest, checkBuild }) {
   try {
     execFromRoot({ cmd: 'npx', args: ['turbo', '--help'], stdio: 'pipe' });
   } catch (error) {
@@ -27,17 +29,18 @@ export async function guardTurboExists() {
     console.error('turbo.json is missing. unable to use the turbo-tools');
     return false;
   }
+
   const turboJsonContents = Object(JSON.parse(await fs.readFile(turboJsonPath, 'utf8')));
-  if (!turboJsonContents.pipeline?.build) {
-    console.error('turbo.json is missing a "build" pipeline. unable to use the turbo-tools');
+  if (checkBuild && (!turboJsonContents.tasks?.build || !turboJsonContents.pipeline?.build)) {
+    console.error('turbo.json is missing a "build" task. unable to use the turbo-tools');
     return false;
   }
-  if (!turboJsonContents.pipeline?.lint) {
-    console.error('turbo.json is missing a "lint" pipeline. unable to use the turbo-tools');
+  if (checkLint && (!turboJsonContents.tasks?.lint || !turboJsonContents.pipeline?.lint)) {
+    console.error('turbo.json is missing a "lint" task. unable to use the turbo-tools');
     return false;
   }
-  if (!turboJsonContents.pipeline?.test) {
-    console.error('turbo.json is missing a "test" pipeline. unable to use the turbo-tools');
+  if (checkTest && (!turboJsonContents.tasks?.test || !turboJsonContents.pipeline?.test)) {
+    console.error('turbo.json is missing a "test" task. unable to use the turbo-tools');
     return false;
   }
   return true;
