@@ -26,11 +26,11 @@
     "url": "git+https://github.com/benduran/turbo-tools.git"
   },
   "scripts": {
-    "build": "run-s clean compile",
+    "build": "bun run clean && bun run compile",
     "clean": "rm -rf ./dist",
     "compile": "tsc --project ./tsconfig.json",
     "lint": "eslint --no-error-on-unmatched-pattern './src/**/*.{tsx,ts,jsx,js,mjs}'",
-    "lint:fix": "npm run lint -- --fix",
+    "lint:fix": "bun run lint -- --fix",
     "start": "node src/cli.js",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
@@ -43,12 +43,11 @@
     "@types/yargs": "^17.0.32",
     "eslint-config-react-yas": "^5.0.4",
     "lint-staged": "^15.2.7",
-    "npm-run-all": "^4.1.5",
     "type-fest": "^4.30.0",
     "vitest": "^1.6.0"
   },
   "dependencies": {
-    "@better-builds/lets-version": "^1.3.1",
+    "@better-builds/lets-version": "^1.3.2",
     "@commitlint/cli": "^19.6.0",
     "@commitlint/config-conventional": "^19.6.0",
     "@npmcli/map-workspaces": "^3.0.6",
@@ -66,7 +65,7 @@
   "lint-staged": {
     "*.{js,jsx,ts,tsx,mjs,mts}": [
       "eslint",
-      "npm run typecheck:staged --"
+      "bun run typecheck:staged --"
     ]
   }
 }
