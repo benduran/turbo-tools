@@ -28,6 +28,7 @@ export async function publish(yargs) {
     dryRun,
     force,
     noChangelog,
+    noCheckout,
     noCommit,
     noFetchAll,
     noFetchTags,
@@ -62,6 +63,11 @@ export async function publish(yargs) {
         'If true, skips running the test command across all changed repositories before attempting to publish',
       type: 'boolean',
     })
+    .option('noCheckout', {
+        default: false,
+        description: 'If true, will not perform a git checkout after publishing.',
+        type: 'boolean',
+      })
     .help().argv;
 
   const publishTag = determinePublishTag(releaseAs);
@@ -213,5 +219,7 @@ export async function publish(yargs) {
   console.info('\n\n*********************************************\n');
 
   // cleanup any outstanding changes for a nice working dir
-  execFromRoot({ args: ['checkout', '.'], cmd: 'git', stdio: 'inherit' });
+  if (!noCheckout) {
+    execFromRoot({ args: ['checkout', '.'], cmd: 'git', stdio: 'inherit' });
+  }
 }
